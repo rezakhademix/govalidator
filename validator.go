@@ -1,4 +1,4 @@
-// Package validation provides configurable rules for validating data of various types.
+// Package validator provides configurable rules for validating data of various types.
 package validator
 
 import "maps"
@@ -13,7 +13,7 @@ type (
 // initiates map errors which has map[string]string type
 var errs = make(Err)
 
-// will return a new validator struct
+// New will return a new validator struct
 func New() *Validator {
 	return &Validator{}
 }
@@ -28,7 +28,7 @@ func (v *Validator) IsFailed() bool {
 	return !v.IsPassed()
 }
 
-// Error returns a map of errors of type map[string]string to
+// Errors returns a map of errors of type map[string]string to
 func (v *Validator) Errors() Err {
 	vErrs := maps.Clone(errs)
 
