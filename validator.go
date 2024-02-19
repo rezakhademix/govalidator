@@ -4,7 +4,7 @@ package validator
 import "maps"
 
 type (
-	// Err the defined type which will be retuned when one or many validator rules failed.
+	// Err the defined type which will be returned when one or many validator rules failed.
 	Err = map[string]string
 	// Validator represents the validator structure
 	Validator struct{}
@@ -45,7 +45,7 @@ func (v *Validator) Check(ok bool, field, msg string) {
 	}
 }
 
-// addErrors fill errors map and prevent duplicates filed from being add to errors map
+// addErrors fill errors map and prevent duplicates field from being added to validator errors
 func (v *Validator) addErrors(field, msg string) {
 	if _, exists := errs[field]; !exists {
 		errs[field] = msg
