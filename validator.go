@@ -22,6 +22,7 @@ var (
 		RequiredMethod: RequiredErrorMessage,
 	}
 
+	// ErrMethodMessageNotFound return error when method name doesn`t have default error message
 	ErrMethodMessageNotFound = errors.New("rule error message not exists")
 )
 
