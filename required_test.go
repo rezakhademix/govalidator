@@ -27,6 +27,13 @@ func TestValidator_RequiredString(t *testing.T) {
 			isPassed:    false,
 			exceptedMsg: "t1 is required",
 		},
+		{
+			tag:         "t2",
+			value:       " ",
+			message:     "t2 is required",
+			isPassed:    false,
+			exceptedMsg: "t2 is required",
+		},
 	}
 
 	v := New()

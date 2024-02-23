@@ -1,6 +1,9 @@
 package validator
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 const (
 	// RequiredMethod determine method name for finding default error message
@@ -12,7 +15,7 @@ const (
 
 // RequiredString check if string value is empty return validation error message
 func (v *Validator) RequiredString(value, field string, msg ...string) *Validator {
-	if value == "" {
+	if strings.TrimSpace(value) == "" {
 		if msg[0] == "" {
 			msg[0] = fmt.Sprintf(RequiredErrorMessage, field)
 		}
