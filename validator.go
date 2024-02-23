@@ -18,7 +18,7 @@ var (
 	// errs initiates map errors which has map[string]string type
 	errs = make(Err)
 
-	mapMethodToErrorMessage = map[string]string{
+	methodToErrorMessage = map[string]string{
 		RequiredMethod: RequiredErrorMessage,
 	}
 
@@ -76,7 +76,7 @@ func FindErrorMessage(method, field string, msgArgs ...any) string {
 		return fmt.Sprintf(msgArgs[0].(string), msgArgs[1:])
 	}
 
-	format, ok := mapMethodToErrorMessage[method]
+	format, ok := methodToErrorMessage[method]
 	if !ok {
 		panic(ErrMethodMessageNotFound)
 	}
