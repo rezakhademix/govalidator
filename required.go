@@ -6,32 +6,31 @@ import (
 )
 
 const (
-	// RequiredMethod determine method name for finding default error message
+	// RequiredMethod represents the method name used for finding the default error message.
 	RequiredMethod = "required"
-
-	// RequiredErrorMessage determine method default error message
+	// RequiredErrorMessage is the default error message format for required fields.
 	RequiredErrorMessage = "%s is required"
 )
 
-// RequiredString check if string value is empty return validation error message
+// RequiredString checks if a string value is empty or not.
 func (v *Validator) RequiredString(value, field string, msg ...string) *Validator {
 	if strings.TrimSpace(value) == "" {
 		if msg[0] == "" {
 			msg[0] = fmt.Sprintf(RequiredErrorMessage, field)
 		}
 
-		v.addErrors(field, msg[0])
+		v.addError(field, msg[0])
 	}
 
 	return v
 }
 
-// RequiredInt check if integer value is empty return validation error message
-func (v *Validator) RequiredInt(value int, field string, msgArgs ...any) *Validator {
+// RequiredInt checks if a integer value is provided or not.
+func (v *Validator) RequiredInt(value int, field string, msg ...any) *Validator {
 	if value == 0 {
-		msg := FindErrorMessage(RequiredMethod, field, msgArgs)
+		msg := v.errMsg(RequiredMethod, field, msg)
 
-		v.addErrors(field, msg)
+		v.addError(field, msg)
 	}
 
 	return v
