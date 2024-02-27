@@ -1,36 +1,27 @@
 package validator
 
-import (
-	"fmt"
-	"strings"
-)
+import "strings"
 
 const (
-	// RequiredMethod represents the method name used for finding the default error message.
-	RequiredMethod = "required"
-	// RequiredErrorMessage is the default error message format for required fields.
-	RequiredErrorMessage = "%s is required"
+	// Required represents the rule name which will be used to find the default error message.
+	Required = "required"
+	// RequiredMsg is the default error message format for required fields.
+	RequiredMsg = "%s is required"
 )
 
 // RequiredString checks if a string value is empty or not.
-func (v *Validator) RequiredString(value, field string, msg ...string) *Validator {
+func (v *Validator) RequiredString(value, field string, msg string) *Validator {
 	if strings.TrimSpace(value) == "" {
-		if msg[0] == "" {
-			msg[0] = fmt.Sprintf(RequiredErrorMessage, field)
-		}
-
-		v.addError(field, msg[0])
+		v.addError(field, v.msg(Required, field, msg))
 	}
 
 	return v
 }
 
 // RequiredInt checks if a integer value is provided or not.
-func (v *Validator) RequiredInt(value int, field string, msg ...any) *Validator {
+func (v *Validator) RequiredInt(value int, field string, msg string) *Validator {
 	if value == 0 {
-		msg := v.errMsg(RequiredMethod, field, msg)
-
-		v.addError(field, msg)
+		v.addError(field, v.msg(Required, field, msg))
 	}
 
 	return v
