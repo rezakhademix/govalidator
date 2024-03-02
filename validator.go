@@ -66,7 +66,7 @@ func (v *Validator) addError(field, msg string) {
 	}
 }
 
-// ErrMsg return error message and check if custom error message is set return formatted custom message
+// msg return error message and check if custom error message is set return formatted custom message
 // otherwise return rule default message
 func (v *Validator) msg(method, field string, msg string) string {
 	if msg != "" {
