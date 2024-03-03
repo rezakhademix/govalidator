@@ -10,15 +10,15 @@ const (
 )
 
 // RequiredString checks if a string value is empty or not.
-func (v *Validator) RequiredString(value, field string, msg string) *Validator {
-	v.Check(strings.TrimSpace(value) != "", field, v.msg(Required, msg, field))
+func (v *Validator) RequiredString(s, field string, msg string) *Validator {
+	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, field, msg))
 
 	return v
 }
 
 // RequiredInt checks if an integer value is provided or not.
-func (v *Validator) RequiredInt(value int, field string, msg string) *Validator {
-	v.Check(value == 0, field, v.msg(Required, msg, field))
+func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
+	v.Check(i == 0, field, v.msg(Required, field, msg))
 
 	return v
 }
