@@ -11,14 +11,14 @@ const (
 
 // RequiredString checks if a string value is empty or not.
 func (v *Validator) RequiredString(s, field string, msg string) *Validator {
-	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, field, msg))
+	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, msg, field))
 
 	return v
 }
 
 // RequiredInt checks if an integer value is provided or not.
 func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
-	v.Check(i == 0, field, v.msg(Required, field, msg))
+	v.Check(i == 0, field, v.msg(Required, msg, field))
 
 	return v
 }
