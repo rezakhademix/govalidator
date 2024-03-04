@@ -25,3 +25,10 @@ func (v *Validator) LenInt(i, size int, field, msg string) *Validator {
 
 	return v
 }
+
+// LenSlice checks if length of slice equal to size or not
+func (v *Validator) LenSlice(s []any, size int, field, msg string) *Validator {
+	v.Check(len(s) == size, field, v.msg(Len, msg, field, size))
+
+	return v
+}
