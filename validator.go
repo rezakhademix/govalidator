@@ -28,6 +28,7 @@ var (
 	methodToErrorMessage = map[string]string{
 		Required: RequiredMsg,
 		Exists:   ExistsMsg,
+		Len:      LenMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
@@ -82,7 +83,7 @@ func (v *Validator) addError(field, msg string) {
 
 // msg return error message and check if custom error message is set return formatted custom message
 // otherwise return rule default message
-func (v *Validator) msg(method, field string, msg string) string {
+func (v *Validator) msg(method, msg string, fieldArgs ...any) string {
 	if msg != "" {
 		return msg
 	}
@@ -92,5 +93,5 @@ func (v *Validator) msg(method, field string, msg string) string {
 		panic(ErrMethodMessageNotFound)
 	}
 
-	return fmt.Sprintf(defaultMsg, field)
+	return fmt.Sprintf(defaultMsg, fieldArgs...)
 }
