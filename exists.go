@@ -7,7 +7,7 @@ const (
 	ExistsMsg = "%s not exists"
 )
 
-// Exists checks if given value is exists in database.
+// Exists checks if given value exists in desired table or not.
 func (v *Validator) Exists(value any, table, column, field, msg string) *Validator {
 	v.Check(v.repo.Exists(value, table, column), field, msg)
 
