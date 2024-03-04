@@ -22,3 +22,9 @@ func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 
 	return v
 }
+
+func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
+	v.Check(f != 0.0, field, v.msg(Required, msg, field))
+
+	return v
+}
