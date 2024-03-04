@@ -22,3 +22,10 @@ func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 
 	return v
 }
+
+// RequiredSlice checks if a slice has any value or not.
+func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator {
+	v.Check(len(s) > 0, field, v.msg(Required, msg, field))
+
+	return v
+}
