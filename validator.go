@@ -22,6 +22,7 @@ var (
 	methodToErrorMessage = map[string]string{
 		Required: RequiredMsg,
 		Len:      LenMsg,
+		Min:      MinMsg,
 		Between:  BetweenMsg,
 	}
 
