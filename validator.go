@@ -11,7 +11,13 @@ type (
 	// Err is the defined type which will be returned when one or many validator rules fail.
 	Err = map[string]string
 	// Validator represents the validator structure
-	Validator struct{}
+	Validator struct {
+		repo Repository
+	}
+	// Repository represent needed repository methods for using in some rules that need database connection.
+	Repository interface {
+		Exists(value any, table, column string) bool
+	}
 )
 
 var (
@@ -21,6 +27,7 @@ var (
 	// methodToErrorMessage contains each validation method and its corresponding error message.
 	methodToErrorMessage = map[string]string{
 		Required: RequiredMsg,
+		Exists:   ExistsMsg,
 		Len:      LenMsg,
 		Max:      MaxMsg,
 		Min:      MinMsg,
@@ -34,6 +41,13 @@ var (
 // New will return a new validator
 func New() *Validator {
 	return &Validator{}
+}
+
+// WithRepo get a repository for using validation rules that need to contact with database
+func (v *Validator) WithRepo(r Repository) *Validator {
+	v.repo = r
+
+	return v
 }
 
 // IsPassed checks validator result is passed or not.
