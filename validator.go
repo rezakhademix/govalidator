@@ -14,7 +14,7 @@ type (
 	Validator struct {
 		repo Repository
 	}
-
+	// Repository represent needed repository methods for using in some rules that need database connection.
 	Repository interface {
 		Exists(value any, table, column string) bool
 	}
