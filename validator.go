@@ -23,6 +23,8 @@ var (
 		Required: RequiredMsg,
 		Len:      LenMsg,
 		Max:      MaxMsg,
+		Min:      MinMsg,
+		Between:  BetweenMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.

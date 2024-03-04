@@ -1,102 +1,108 @@
 package validator
 
 import (
-	"testing"
-
+	"fmt"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
-func TestValidator_MinInt(t *testing.T) {
+func TestValidator_BetweenInt(t *testing.T) {
 	tests := []struct {
 		field       string
 		value       int
 		min         int
+		max         int
 		message     string
 		isPassed    bool
 		expectedMsg string
 	}{
 		{
 			field:       "t0",
-			value:       2,
-			min:         1,
+			value:       7,
+			min:         -7,
+			max:         10,
 			message:     "",
 			isPassed:    true,
 			expectedMsg: "",
 		},
 		{
 			field:       "t1",
-			value:       -1,
-			min:         0,
+			value:       -21,
+			min:         -1,
+			max:         -5,
 			message:     "",
 			isPassed:    false,
-			expectedMsg: "t1 should more than 0",
+			expectedMsg: fmt.Sprintf(BetweenMsg, "t1", -1, -5),
 		},
 		{
 			field:       "t2",
-			value:       12,
-			min:         20,
-			message:     "t2 must be greater than 20",
+			value:       90,
+			min:         0,
+			max:         9,
+			message:     "t2 must be larger than 0 & less than 9",
 			isPassed:    false,
-			expectedMsg: "t2 must be greater than 20",
+			expectedMsg: "t2 must be larger than 0 & less than 9",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MinInt(test.value, test.min, test.field, test.message)
+		v.BetweenInt(test.value, test.min, test.max, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
-
-		if !test.isPassed {
+		if v.IsFailed() {
 			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
 		}
 	}
 }
 
-func TestValidator_MinFloat64(t *testing.T) {
+func TestValidator_BetweenFloat64(t *testing.T) {
 	tests := []struct {
 		field       string
 		value       float64
 		min         float64
+		max         float64
 		message     string
 		isPassed    bool
 		expectedMsg string
 	}{
 		{
 			field:       "t0",
-			value:       2.5,
-			min:         1.5,
+			value:       5.33,
+			min:         1.21,
+			max:         5.38,
 			message:     "",
 			isPassed:    true,
 			expectedMsg: "",
 		},
 		{
 			field:       "t1",
-			value:       -0.75,
-			min:         -0.25,
+			value:       -5.31,
+			min:         -1.5,
+			max:         -0.4,
 			message:     "",
 			isPassed:    false,
-			expectedMsg: "t1 should more than -0.25",
+			expectedMsg: fmt.Sprintf(BetweenMsg, "t1", -1.5, -0.4),
 		},
 		{
 			field:       "t2",
-			value:       1.6,
-			min:         7.1,
-			message:     "t2 must be greater than 1.6",
+			value:       90,
+			min:         0,
+			max:         9,
+			message:     "t2 must be larger than 0 & less than 9",
 			isPassed:    false,
-			expectedMsg: "t2 must be greater than 1.6",
+			expectedMsg: "t2 must be larger than 0 & less than 9",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MinFloat64(test.value, test.min, test.field, test.message)
+		v.BetweenFloat64(test.value, test.min, test.max, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
-
-		if !test.isPassed {
+		if v.IsFailed() {
 			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
 		}
 	}
