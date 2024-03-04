@@ -18,7 +18,7 @@ func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 
 // RequiredInt checks if an integer value is provided or not.
 func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
-	v.Check(i == 0, field, v.msg(Required, msg, field))
+	v.Check(i != 0, field, v.msg(Required, msg, field))
 
 	return v
 }

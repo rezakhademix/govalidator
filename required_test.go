@@ -6,6 +6,43 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestValidator_RequiredInt(t *testing.T) {
+	tests := []struct {
+		tag         string
+		value       int
+		message     string
+		isPassed    bool
+		expectedMsg string
+	}{
+		{
+			tag:         "t0",
+			value:       1,
+			message:     "",
+			isPassed:    true,
+			expectedMsg: "",
+		},
+		{
+			tag:         "t1",
+			value:       0,
+			message:     "t1 is required",
+			isPassed:    false,
+			expectedMsg: "t1 is required",
+		},
+	}
+
+	v := New()
+
+	for _, test := range tests {
+		v.RequiredInt(test.value, test.tag, test.message)
+
+		assert.Equal(t, test.isPassed, v.IsPassed())
+
+		if !test.isPassed {
+			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+		}
+	}
+}
+
 func TestValidator_RequiredString(t *testing.T) {
 	tests := []struct {
 		tag         string
