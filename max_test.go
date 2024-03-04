@@ -92,7 +92,7 @@ func TestValidator_MaxFloat64(t *testing.T) {
 	v := New()
 
 	for _, test := range tests {
-		v.MaxFloat64(test.value, test.max, test.field, test.message)
+		v.MaxFloat(test.value, test.max, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 

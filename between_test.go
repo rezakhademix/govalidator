@@ -2,8 +2,9 @@ package validator
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestValidator_BetweenInt(t *testing.T) {
@@ -57,7 +58,7 @@ func TestValidator_BetweenInt(t *testing.T) {
 	}
 }
 
-func TestValidator_BetweenFloat64(t *testing.T) {
+func TestValidator_BetweenFloat(t *testing.T) {
 	tests := []struct {
 		field       string
 		value       float64
@@ -99,7 +100,7 @@ func TestValidator_BetweenFloat64(t *testing.T) {
 	v := New()
 
 	for _, test := range tests {
-		v.BetweenFloat64(test.value, test.min, test.max, test.field, test.message)
+		v.BetweenFloat(test.value, test.min, test.max, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 		if v.IsFailed() {

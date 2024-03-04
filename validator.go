@@ -14,7 +14,9 @@ type (
 	Validator struct {
 		repo Repository
 	}
-	// Repository represent needed repository methods for using in some rules that need database connection.
+
+	// Repository represent a repository for using in rules that needs a database connection to
+	// check a record exists on database or not.
 	Repository interface {
 		Exists(value any, table, column string) bool
 	}
@@ -43,7 +45,7 @@ func New() *Validator {
 	return &Validator{}
 }
 
-// WithRepo get a repository for using validation rules that need to contact with database
+// WithRepo set the desired repository for using in Exists validation rule
 func (v *Validator) WithRepo(r Repository) *Validator {
 	v.repo = r
 

@@ -1,8 +1,9 @@
 package validator
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var (
@@ -76,7 +77,8 @@ func TestValidator_Exists(t *testing.T) {
 		},
 	}
 
-	v := New().WithRepo(repo{})
+	v := New().
+		WithRepo(repo{})
 
 	for _, test := range tests {
 		v.Exists(test.value, test.table, test.column, test.tag, test.msg)
