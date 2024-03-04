@@ -22,11 +22,7 @@ var (
 	methodToErrorMessage = map[string]string{
 		Required: RequiredMsg,
 		Len:      LenMsg,
-<<<<<<< Updated upstream
-=======
-		Between:  BetweenMsg,
 		Min:      MinMsg,
->>>>>>> Stashed changes
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
