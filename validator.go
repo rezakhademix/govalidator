@@ -22,6 +22,7 @@ var (
 	methodToErrorMessage = map[string]string{
 		Required: RequiredMsg,
 		Len:      LenMsg,
+		Between:  BetweenMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
