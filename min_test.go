@@ -92,7 +92,7 @@ func TestValidator_MinFloat64(t *testing.T) {
 	v := New()
 
 	for _, test := range tests {
-		v.MinFloat64(test.value, test.min, test.field, test.message)
+		v.MinFloat(test.value, test.min, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 

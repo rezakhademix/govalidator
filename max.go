@@ -14,9 +14,9 @@ func (v *Validator) MaxInt(i, max int, field, msg string) *Validator {
 	return v
 }
 
-// MaxFloat checks i to be less than given max value
-func (v *Validator) MaxFloat(i, max float64, field, msg string) *Validator {
-	v.Check(i <= max, field, v.msg(Max, msg, field, max))
+// MaxFloat checks f to be less than given max value
+func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
+	v.Check(f <= max, field, v.msg(Max, msg, field, max))
 
 	return v
 }
