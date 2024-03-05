@@ -29,3 +29,10 @@ func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator 
 
 	return v
 }
+
+// RequiredFloat checks if float value is provided or not.
+func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
+	v.Check(f != 0.0, field, v.msg(Required, msg, field))
+
+	return v
+}
