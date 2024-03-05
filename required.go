@@ -18,11 +18,19 @@ func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 
 // RequiredInt checks if an integer value is provided or not.
 func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
-	v.Check(i == 0, field, v.msg(Required, msg, field))
+	v.Check(i != 0, field, v.msg(Required, msg, field))
 
 	return v
 }
 
+// RequiredSlice checks if a slice has any value or not.
+func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator {
+	v.Check(len(s) > 0, field, v.msg(Required, msg, field))
+
+	return v
+}
+
+// RequiredFloat checks if float value is provided or not.
 func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
 	v.Check(f != 0.0, field, v.msg(Required, msg, field))
 
