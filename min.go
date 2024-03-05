@@ -14,7 +14,7 @@ func (v *Validator) MinInt(i, min int, field, msg string) *Validator {
 	return v
 }
 
-// MinFloat checks i to be greater than given min value
+// MinFloat checks f to be greater than given min value
 func (v *Validator) MinFloat(f, min float64, field, msg string) *Validator {
 	v.Check(f >= min, field, v.msg(Min, msg, field, min))
 
