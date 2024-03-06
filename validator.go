@@ -28,12 +28,13 @@ var (
 
 	// methodToErrorMessage contains each validation method and its corresponding error message.
 	methodToErrorMessage = map[string]string{
-		Required: RequiredMsg,
-		Exists:   ExistsMsg,
-		Len:      LenMsg,
-		Max:      MaxMsg,
-		Min:      MinMsg,
-		Between:  BetweenMsg,
+		Required:  RequiredMsg,
+		Exists:    ExistsMsg,
+		Len:       LenMsg,
+		Max:       MaxMsg,
+		Min:       MinMsg,
+		Between:   BetweenMsg,
+		NotExists: NotExistsMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
