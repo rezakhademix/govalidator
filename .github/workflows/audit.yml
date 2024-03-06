@@ -41,8 +41,13 @@ jobs:
 
     - name: Run tests
       run: go test -race -vet=off ./...
-    
-    - name: Publish coverage
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ github.COVERALLS_REPO_TOKEN }}
+
+    - name: Install goveralls
+      run: go install github.com/mattn/goveralls@latest
+      
+    - name: Send coverage
+      env:
+        COVERALLS_TOKEN: ${{ github.COVERALLS_REPO_TOKEN }}
+      run: goveralls -coverprofile=covprofile -service=github
+
+        
