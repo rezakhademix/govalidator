@@ -86,7 +86,7 @@ func TestValidator_Exists(t *testing.T) {
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if v.IsFailed() {
-			assert.Equal(t, test.msg, v.Errors()[test.tag])
+			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
 		}
 	}
 }

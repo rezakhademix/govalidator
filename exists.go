@@ -9,7 +9,7 @@ const (
 
 // Exists checks if given value exists in desired table or not.
 func (v *Validator) Exists(value any, table, column, field, msg string) *Validator {
-	v.Check(v.repo.Exists(value, table, column), field, msg)
+	v.Check(v.repo.Exists(value, table, column), field, v.msg(Exists, msg, field))
 
 	return v
 }
