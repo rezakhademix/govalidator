@@ -42,6 +42,9 @@ jobs:
     - name: Run tests
       run: go test -race -vet=off ./...
 
+    - name: Run test with profile
+      run: go test -coverprofile=./coverage.out ./... && go tool cover -html=./coverage-html.out ./...
+
     - name: Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
