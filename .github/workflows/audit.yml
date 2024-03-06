@@ -43,10 +43,10 @@ jobs:
       run: go test -race -vet=off ./...
 
     - name: Run test coverage
-      run: go test -v -covermode=count -coverprofile=coverage.out
+      run: go test -coverprofile=coverage.out ./...
 
     - name: Coveralls
-      run: curl -sL https://coveralls.io/coveralls-linux.tar.gz | tar -xz && ./coveralls
+      run: ./coveralls -coverprofile=coverage.out -service=github
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
 
