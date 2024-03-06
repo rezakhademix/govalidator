@@ -42,12 +42,15 @@ jobs:
     - name: Run tests
       run: go test -race -vet=off ./...
 
+    - name: Run test coverage
+      run: go test -v -covermode=count -coverprofile=coverage.out
+
     - name: Install goveralls
       run: go install github.com/mattn/goveralls@latest
       
     - name: Send coverage
       env:
         COVERALLS_TOKEN: ${{ github.COVERALLS_REPO_TOKEN }}
-      run: goveralls -coverprofile=covprofile -service=github
+      run: goveralls -coverprofile=coverage.out -service=github
 
         
