@@ -1,3 +1,5 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/govalidator.svg)](https://pkg.go.dev/github.com/rezakhademix/govalidator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/govalidator)](https://goreportcard.com/report/github.com/rezakhademix/govalidator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 ## govalidator
 
 This is a Golang Validator package without any type assertion or reflection that provides data validation.
@@ -42,27 +44,27 @@ Run the following command to install the package:
 2. with custom field names and messages:
 
    ```go
-        type User struct {
-           name string `json:"name"`
-       }
+    type User struct {
+        name string `json:"name"`
+    }
 
-       var user User
-       _ := c.ShouldBind(&user)  // error ignored for simplicity
+    var user User
+    _ := c.ShouldBind(&user)  // error ignored for simplicity
 
-       v := validator.New()
+    v := validator.New()
 
-       v.MaxString(user.name, "first_name", "please fill first_name field") // with custom field name and custom validation message
+    v.MaxString(user.name, "first_name", "please fill first_name field") // with custom field name and custom validation message
 
-      if v.IsFailed() {
-             return v.Errors()
-         }
+    if v.IsFailed() {
+        return v.Errors()
+    }
    ```
 
 3. advanced usage:
    You can define any custom rules or any flexible rule that does not exist in default validator package. Simply use `check()` method to define your desired data validations:
 
 ```go
-   type Profile struct {
+    type Profile struct {
        Name   string
        Age    int
        Score  int
