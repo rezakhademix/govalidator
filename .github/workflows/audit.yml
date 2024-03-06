@@ -49,6 +49,7 @@ jobs:
     - name: Coveralls
       run: |
         go get github.com/mattn/goveralls
-        goveralls -coverprofile=coverage.out -service=github
+        export GOBIN=$GOPATH/bin
+        $GOBIN/goveralls -coverprofile=coverage.out -service=github
       env:
         COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}  
