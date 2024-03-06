@@ -40,4 +40,11 @@ jobs:
       run: golint ./...
 
     - name: Run tests
-      run: go test -race -vet=off ./...
+      run: go test -race -vet=off -coverprofile=./coverage.out ./...
+
+    - name: Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: rezakhademix/govalidator
+
