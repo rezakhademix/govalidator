@@ -6,7 +6,7 @@ This is a Golang Validator package without any type assertion or reflection that
 
 ## Requirements
 
-Go 1.13 or above.
+Go 1.22 or above.
 
 ## Getting Started
 
@@ -69,7 +69,7 @@ Run the following command to install the package:
        Age    int
        Score  int
        Status []string
-   }
+    }
 
    var profile Profile
 
