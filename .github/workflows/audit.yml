@@ -46,10 +46,9 @@ jobs:
       run: go test -coverprofile=coverage.out ./...
 
 
-    - name: Coveralls
-      run: |
-        go get github.com/mattn/goveralls
-        export GOBIN=$GOPATH/bin
-        $GOBIN/goveralls -coverprofile=coverage.out -service=github
-      env:
-        COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}  
+    - name: Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: rezakhademix/govalidator
+
