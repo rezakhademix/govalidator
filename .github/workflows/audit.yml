@@ -41,3 +41,8 @@ jobs:
 
     - name: Run tests
       run: go test -race -vet=off ./...
+    
+    - name: Send coverage
+      env:
+        COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: goveralls -coverprofile=covprofile -service=github
