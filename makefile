@@ -3,22 +3,22 @@
 # default command
 default: help
 
-test: ## will run all tests
+test: ## run all tests
 	go test -v ./...
 
-test-cover: ## will run go test --cover to show test coverage percent
+test-cover: ## run `go test --cover` to show test coverage percent
 	go test --cover .
 
-test-profile: ## will run go test -coverprofile with html coverage output
+test-profile: ## run `go test -coverprofile` with html coverage output
 	go test -coverprofile=./coverage.out && go tool cover -html=./coverage.out
 
-clean-test-cache: ## will only clean the test cache 
+clean-test-cache: ## only clean the test cache 
 	go clean -testcache
 
-clean: ## will clean build cache
+clean: ## clean build cache
 	go clean -cache
 
-tidy: ## will run go mod tidy command
+tidy: ## run `go mod tidy` command
 	go mod tidy -v
 	@echo "done"
 
@@ -26,7 +26,7 @@ tidy: ## will run go mod tidy command
 help:
 	@echo "usage: make [command]"
 	@echo ""
-	@echo "available commands:"
+	@echo "commands:"
 	@sed \
     		-e '/^[a-zA-Z0-9_\-]*:.*##/!d' \
     		-e 's/:.*##\s*/:/' \
