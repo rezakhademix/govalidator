@@ -18,7 +18,7 @@ clean-test-cache: ## will only clean the test cache
 clean: ## will clean build cache
 	go clean -cache
 
-tidy: ## will run a go mod tidy command
+tidy: ## will run go mod tidy command
 	go mod tidy -v
 	@echo "done"
 
