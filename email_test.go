@@ -11,7 +11,6 @@ func TestValidator_Email(t *testing.T) {
 		name        string
 		field       string
 		value       string
-		pattern     string
 		isPassed    bool
 		message     string
 		expectedMsg string
@@ -20,7 +19,6 @@ func TestValidator_Email(t *testing.T) {
 			name:        "test an empty string value will fail email validation",
 			field:       "email",
 			value:       "",
-			pattern:     EmailRegex,
 			isPassed:    false,
 			message:     "email is not valid",
 			expectedMsg: "email is not valid",
@@ -29,7 +27,6 @@ func TestValidator_Email(t *testing.T) {
 			name:        "test an empty space string value will fail email validation",
 			field:       "email_address",
 			value:       " ",
-			pattern:     EmailRegex,
 			isPassed:    false,
 			message:     "email_address is not valid",
 			expectedMsg: "email_address is not valid",
@@ -38,7 +35,6 @@ func TestValidator_Email(t *testing.T) {
 			name:        "test a wrong string value will fail email validation",
 			field:       "email",
 			value:       "09377475856",
-			pattern:     EmailRegex,
 			isPassed:    false,
 			message:     "email is not valid",
 			expectedMsg: "email is not valid",
@@ -47,7 +43,6 @@ func TestValidator_Email(t *testing.T) {
 			name:        "test a wrong string value will fail email validation",
 			field:       "email",
 			value:       "^$*me%$e.com",
-			pattern:     EmailRegex,
 			isPassed:    false,
 			message:     "email is not valid",
 			expectedMsg: "email is not valid",
@@ -56,7 +51,6 @@ func TestValidator_Email(t *testing.T) {
 			name:        "test a correct email string value will pass validation",
 			field:       "email",
 			value:       "rezakhdemix@gmail.com",
-			pattern:     EmailRegex,
 			isPassed:    true,
 			message:     "",
 			expectedMsg: "",
@@ -66,7 +60,7 @@ func TestValidator_Email(t *testing.T) {
 	for _, test := range tests {
 		v := New()
 
-		v.RegexMatches(test.value, test.pattern, test.field, test.message)
+		v.Email(test.value, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
