@@ -6,6 +6,13 @@ default: help
 test: ## run all tests
 	go test -v ./...
 
+test-one: ## run only tests matching the passed regex as `name`
+ifdef name
+	go test -run ${name}
+else
+	@echo "no name passed to run matching tests!"
+endif
+
 test-cover: ## run `go test --cover` to show test coverage percent
 	go test --cover .
 
