@@ -35,6 +35,7 @@ var (
 		Min:       MinMsg,
 		Between:   BetweenMsg,
 		NotExists: NotExistsMsg,
+		Regex:     RegexMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
