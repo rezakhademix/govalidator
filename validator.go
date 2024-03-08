@@ -37,6 +37,7 @@ var (
 		NotExists: NotExistsMsg,
 		Regex:     RegexMsg,
 		Email:     EmailMsg,
+		UUID:      UUIDMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
