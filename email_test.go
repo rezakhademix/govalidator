@@ -57,9 +57,9 @@ func TestValidator_Email(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		v := New()
+	v := New()
 
+	for _, test := range tests {
 		v.Email(test.value, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
