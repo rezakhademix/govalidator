@@ -18,13 +18,8 @@ func TestValidator_When(t *testing.T) {
 			expectedExec: true,
 		},
 		{
-			name:         "test the given closure will run if the condition is true",
-			condition:    20 == 20,
-			expectedExec: true,
-		},
-		{
 			name:         "test the given closure won't run if the condition is false",
-			condition:    len("reza") < 0,
+			condition:    len("reza") < 2,
 			expectedExec: false,
 		},
 		{
