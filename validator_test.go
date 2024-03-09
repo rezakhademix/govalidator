@@ -17,19 +17,19 @@ func Test_msg(t *testing.T) {
 			name:        "test not exists method will result a panic",
 			method:      "qwert",
 			msg:         "",
-			expectedMsg: "method message does not exist",
+			expectedMsg: "method default validation message does not exist in methodToErrorMessage",
 		},
 		{
 			name:        "test empty string method will result a panic",
 			method:      "",
 			msg:         "",
-			expectedMsg: "method message does not exist",
+			expectedMsg: "method default validation message does not exist in methodToErrorMessage",
 		},
 		{
 			name:        "test empty space string method will result a panic",
 			method:      " ",
 			msg:         "",
-			expectedMsg: "method message does not exist",
+			expectedMsg: "method default validation message does not exist in methodToErrorMessage",
 		},
 	}
 

@@ -123,3 +123,71 @@ func Test_MaxFloat64(t *testing.T) {
 		}
 	}
 }
+
+func Test_MaxString(t *testing.T) {
+	tests := []struct {
+		name        string
+		field       string
+		value       string
+		max         int
+		isPassed    bool
+		msg         string
+		expectedMsg string
+	}{
+		{
+			name:        "test `rey` will pass validation when maximum valid length is 5",
+			field:       "name",
+			value:       "rey",
+			max:         5,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test empty string will pass validation when maximum valid length is 2",
+			field:       "username",
+			value:       "",
+			max:         2,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test empty space string won't pass validation when maximum valid length is 0",
+			field:       "username",
+			value:       " ",
+			max:         -1,
+			isPassed:    false,
+			msg:         "",
+			expectedMsg: "username should has less than -1 characters",
+		},
+		{
+			name:        "test `abcd` won't pass validation when maximum valid length is 3",
+			field:       "alphabet",
+			value:       "abcd",
+			max:         3,
+			isPassed:    false,
+			msg:         "alphabet should has less than 3 characters",
+			expectedMsg: "alphabet should has less than 3 characters",
+		},
+	}
+
+	v := New()
+
+	for _, test := range tests {
+		v.MaxString(test.value, test.max, test.field, test.msg)
+
+		assert.Equal(t, test.isPassed, v.IsPassed())
+
+		if !test.isPassed {
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected: %s, got: %s",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
+		}
+	}
+}
