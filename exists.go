@@ -4,7 +4,7 @@ const (
 	// Exists represents the rule name which will be used to find the default error message.
 	Exists = "exists"
 	// ExistsMsg is default error message format for records that does not exist.
-	ExistsMsg = "%s not exists"
+	ExistsMsg = "%s does not exist"
 )
 
 // Exists checks if given value exists in desired table or not.

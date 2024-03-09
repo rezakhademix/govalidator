@@ -8,96 +8,127 @@ import (
 
 func TestValidator_MinInt(t *testing.T) {
 	tests := []struct {
+		name        string
 		field       string
 		value       int
 		min         int
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			field:       "t0",
+			name:        "test integer value of `2` will pass if the validator minimum acceptable value is 1",
+			field:       "number",
 			value:       2,
 			min:         1,
-			message:     "",
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			field:       "t1",
-			value:       -1,
-			min:         0,
-			message:     "",
+			name:        "test integer value of `3` won't pass if the validator minimum acceptable value is 1",
+			field:       "score",
+			value:       3,
+			min:         10,
 			isPassed:    false,
-			expectedMsg: "t1 should more than 0",
+			msg:         "",
+			expectedMsg: "score should be more than 10",
 		},
 		{
-			field:       "t2",
-			value:       12,
-			min:         20,
-			message:     "t2 must be greater than 20",
+			name:        "test integer value of `17` won't pass if the validator minimum acceptable value is 18",
+			field:       "age",
+			value:       17,
+			min:         18,
 			isPassed:    false,
-			expectedMsg: "t2 must be greater than 20",
+			msg:         "age must be greater than 18",
+			expectedMsg: "age must be greater than 18",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MinInt(test.value, test.min, test.field, test.message)
+		v.MinInt(test.value, test.min, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }
 
-func TestValidator_MinFloat64(t *testing.T) {
+func TestValidator_MinFloat(t *testing.T) {
 	tests := []struct {
+		name        string
 		field       string
 		value       float64
 		min         float64
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			field:       "t0",
+			name:        "test float value of `2.5` will pass if the validator minimum acceptable value is 1.5",
+			field:       "score",
 			value:       2.5,
 			min:         1.5,
-			message:     "",
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			field:       "t1",
-			value:       -0.75,
-			min:         -0.25,
-			message:     "",
-			isPassed:    false,
-			expectedMsg: "t1 should more than -0.25",
+			name:        "test float value of `21` will pass if the validator minimum acceptable value is 11",
+			field:       "score",
+			value:       21,
+			min:         11,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
 		},
 		{
-			field:       "t2",
-			value:       1.6,
-			min:         7.1,
-			message:     "t2 must be greater than 1.6",
+			name:        "test float value of `9.75` won't pass if the validator minimum acceptable value is 10",
+			field:       "goal",
+			value:       9.75,
+			min:         10,
 			isPassed:    false,
-			expectedMsg: "t2 must be greater than 1.6",
+			msg:         "",
+			expectedMsg: "goal should be more than 10",
+		},
+		{
+			name:        "test float value of `11.6` won't pass if the validator minimum acceptable value is 121.1",
+			field:       "number",
+			value:       11.6,
+			min:         121.1,
+			isPassed:    false,
+			msg:         "number must be greater than 121.1",
+			expectedMsg: "number must be greater than 121.1",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MinFloat(test.value, test.min, test.field, test.message)
+		v.MinFloat(test.value, test.min, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

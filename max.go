@@ -4,7 +4,7 @@ const (
 	// Max represents the rule name which will be used to find the default error message.
 	Max = "max"
 	// MaxMsg is the default error message format for fields with the maximum validation rule.
-	MaxMsg = "%s should less than %v"
+	MaxMsg = "%s should be less than %v"
 )
 
 // MaxInt checks i to be less than given max value

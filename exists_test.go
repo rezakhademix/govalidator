@@ -6,20 +6,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var (
-	tables = map[string][]map[string]any{
-		"users": {
-			{
-				"id":       1,
-				"username": "test_1",
-			},
-			{
-				"id":       2,
-				"username": "test_2",
-			},
+var tables = map[string][]map[string]any{
+	"users": {
+		{
+			"id":       1,
+			"username": "reza",
+			"nickname": "khademi",
 		},
-	}
-)
+		{
+			"id":       2,
+			"username": "adel",
+			"nickname": "haddadi",
+		},
+	},
+}
 
 type repo struct{}
 
@@ -40,7 +40,8 @@ func (repo) Exists(value any, table, column string) bool {
 
 func TestValidator_Exists(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       any
 		table       string
 		column      string
@@ -49,17 +50,9 @@ func TestValidator_Exists(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			tag:         "id",
-			value:       5,
-			table:       "users",
-			column:      "id",
-			isPassed:    false,
-			msg:         "record not exists",
-			expectedMsg: "record not exists",
-		},
-		{
-			tag:         "username",
-			value:       "test_1",
+			name:        "test username of adel exists in defined users table",
+			field:       "username",
+			value:       "adel",
 			table:       "users",
 			column:      "username",
 			isPassed:    true,
@@ -67,13 +60,24 @@ func TestValidator_Exists(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			tag:         "username_2",
-			value:       "test_5",
+			name:        "test nickname of Horizon does not exist in defined users table",
+			field:       "nickname",
+			value:       "Horizon",
 			table:       "users",
-			column:      "username",
+			column:      "nickname",
 			isPassed:    false,
 			msg:         "",
-			expectedMsg: "username_2 not exists",
+			expectedMsg: "nickname does not exist",
+		},
+		{
+			name:        "test id of 500 does not exist in defined users table",
+			field:       "id",
+			value:       500,
+			table:       "users",
+			column:      "id",
+			isPassed:    false,
+			msg:         "user with id of 5 does not exist in users table",
+			expectedMsg: "user with id of 5 does not exist in users table",
 		},
 	}
 
@@ -81,12 +85,19 @@ func TestValidator_Exists(t *testing.T) {
 		WithRepo(repo{})
 
 	for _, test := range tests {
-		v.Exists(test.value, test.table, test.column, test.tag, test.msg)
+		v.Exists(test.value, test.table, test.column, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if v.IsFailed() {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed, expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

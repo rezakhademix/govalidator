@@ -32,14 +32,6 @@ func TestValidator_UUID(t *testing.T) {
 			expectedMsg: "uuid is not a valid UUID",
 		},
 		{
-			name:        "test an invalid uuid won't pass validation",
-			field:       "uuid",
-			value:       "f74c2a2284b3-aa59-504-4295-8543-f74c2a2284b3",
-			isPassed:    false,
-			msg:         "uuid is not a valid UUID",
-			expectedMsg: "uuid is not a valid UUID",
-		},
-		{
 			name:        "test an empty string won't pass validation",
 			field:       "uuid",
 			value:       "",
@@ -55,6 +47,14 @@ func TestValidator_UUID(t *testing.T) {
 			msg:         "",
 			expectedMsg: "uuid is not a valid UUID",
 		},
+		{
+			name:        "test an invalid uuid won't pass validation",
+			field:       "uuid",
+			value:       "f74c2a2284b3-aa59-504-4295-8543-f74c2a2284b3",
+			isPassed:    false,
+			msg:         "uuid is not a valid UUID",
+			expectedMsg: "uuid is not a valid UUID",
+		},
 	}
 
 	v := New()
@@ -62,12 +62,14 @@ func TestValidator_UUID(t *testing.T) {
 	for _, test := range tests {
 		v.UUID(test.value, test.field, test.msg)
 
+		assert.Equal(t, test.isPassed, v.IsPassed())
+
 		if !test.isPassed {
 			assert.Equal(
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"assertion failed, expectedMsg: %s, msg: %s",
+				"test case %q failed, expectedMsg: %s, msg: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

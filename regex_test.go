@@ -63,15 +63,22 @@ func TestValidator_RegexMatches(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		v := New()
+	v := New()
 
+	for _, test := range tests {
 		v.RegexMatches(test.value, test.pattern, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
+			assert.Equal(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

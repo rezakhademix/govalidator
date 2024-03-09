@@ -14,13 +14,13 @@ func Test_In(t *testing.T) {
 		expectedResult   bool
 	}{
 		{
-			name:             "test integer value does not exist in acceptableValues",
+			name:             "test integer value of `4` does not exist in acceptable values",
 			value:            4,
 			acceptableValues: []any{1, 2, 3},
 			expectedResult:   false,
 		},
 		{
-			name:             "test string value does not exist in acceptable values",
+			name:             "test string value of `redis` does not exist in acceptable values",
 			value:            "redis",
 			acceptableValues: []any{"mysql", "mariadb", "postgres"},
 			expectedResult:   false,
@@ -38,13 +38,13 @@ func Test_In(t *testing.T) {
 			expectedResult:   false,
 		},
 		{
-			name:             "test integer value exists in acceptable values",
+			name:             "test integer value of `20` exists in acceptable values",
 			value:            20,
 			acceptableValues: []any{10, 20, 30},
 			expectedResult:   true,
 		},
 		{
-			name:             "test string value exists in acceptable values",
+			name:             "test string value of `go` exists in acceptable values",
 			value:            "go",
 			acceptableValues: []any{"go", "php", "java"},
 			expectedResult:   true,

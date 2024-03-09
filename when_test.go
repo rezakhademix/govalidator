@@ -42,7 +42,7 @@ func TestValidator_When(t *testing.T) {
 			t,
 			test.expectedExec,
 			executed,
-			"assertion failed, expectedMsg: %s, validatorMsg: %s",
+			"test case %q failed, expectedMsg: %s, validatorMsg: %s",
 			test.expectedExec,
 			executed,
 		)

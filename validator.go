@@ -31,6 +31,7 @@ var (
 		Required:  RequiredMsg,
 		Exists:    ExistsMsg,
 		Len:       LenMsg,
+		LenList:   LenListMsg,
 		Max:       MaxMsg,
 		Min:       MinMsg,
 		Between:   BetweenMsg,
