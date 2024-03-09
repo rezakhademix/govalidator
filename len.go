@@ -8,8 +8,12 @@ import (
 const (
 	// Len represents the rule name which will be used to find the default error message.
 	Len = "len"
-	// LenMsg is the default error message format for len validating rule.
-	LenMsg = "%s should %d character"
+	// LenList represents the rule name which will be used to find the default error message.
+	LenList = "lenList"
+	// LenMsg is the default error message format for Len validation rule.
+	LenMsg = "%s should be %d characters"
+	// LenListMsg is the default error message format for LenSlice validation rule.
+	LenListMsg = "%s should have %d items"
 )
 
 // LenString checks if length of a string equal to give size or not.
@@ -28,7 +32,7 @@ func (v *Validator) LenInt(i, size int, field, msg string) *Validator {
 
 // LenSlice checks if length of a slice is equal to given size or not.
 func (v *Validator) LenSlice(s []any, size int, field, msg string) *Validator {
-	v.Check(len(s) == size, field, v.msg(Len, msg, field, size))
+	v.Check(len(s) == size, field, v.msg(LenList, msg, field, size))
 
 	return v
 }

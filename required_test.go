@@ -1,7 +1,6 @@
 package validator
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,174 +8,236 @@ import (
 
 func TestValidator_RequiredInt(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       int
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			tag:         "t0",
-			value:       1,
-			message:     "",
+			name:        "test integer value of `21` will pass the required int valiation",
+			field:       "age",
+			value:       21,
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			tag:         "t1",
+			name:        "test integer value of `0` won't pass the required int valiation",
+			field:       "age",
 			value:       0,
-			message:     "t1 is required",
 			isPassed:    false,
-			expectedMsg: "t1 is required",
+			msg:         "",
+			expectedMsg: "age is required",
+		},
+		{
+			name:        "test integer value of `0` won't pass the required int valiation",
+			field:       "age",
+			value:       0,
+			isPassed:    false,
+			msg:         "age is required",
+			expectedMsg: "age is required",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.RequiredInt(test.value, test.tag, test.message)
+		v.RequiredInt(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }
 
 func TestValidator_RequiredString(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       string
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			tag:         "t0",
-			value:       "test 0",
-			message:     "",
+			name:        "test string value of `lion` will pass the required string valiation",
+			field:       "animal",
+			value:       "lion",
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			tag:         "t1",
-			value:       "",
-			message:     "t1 is required",
-			isPassed:    false,
-			expectedMsg: "t1 is required",
+			name:        "test string value of `1160277052` will pass the required string valiation",
+			field:       "id",
+			value:       "1160277052",
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
 		},
 		{
-			tag:         "t2",
-			value:       " ",
-			message:     "t2 is required",
+			name:        "test emtpy string value won't pass the required string valiation",
+			field:       "name",
+			value:       "",
 			isPassed:    false,
-			expectedMsg: "t2 is required",
+			msg:         "name is required",
+			expectedMsg: "name is required",
+		},
+		{
+			name:        "test emtpy space string value won't pass the required string valiation",
+			field:       "last_name",
+			value:       " ",
+			isPassed:    false,
+			msg:         "last_name is required",
+			expectedMsg: "last_name is required",
 		},
 	}
 
 	v := New()
+
 	for _, test := range tests {
-		v.RequiredString(test.value, test.tag, test.message)
+		v.RequiredString(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }
 
 func TestValidator_RequiredFloat(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       float64
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			tag:         "t0",
-			value:       1.0,
-			message:     "",
+			name:        "test float value of `12.23` will pass the required float valiation",
+			field:       "average",
+			value:       12.23,
 			isPassed:    true,
-			expectedMsg: "f2 is required",
+			msg:         "",
+			expectedMsg: "",
 		},
 		{
-			tag:         "t1",
-			value:       -1.0,
-			message:     "f2 is required",
-			isPassed:    true,
-			expectedMsg: fmt.Sprintf(RequiredMsg, "t1"),
-		},
-		{
-			tag:         "t2",
-			value:       0.0,
-			message:     "f2 is required",
+			name:        "test float value of `0` won't pass the required float valiation",
+			field:       "score",
+			value:       0,
 			isPassed:    false,
-			expectedMsg: "f2 is required",
+			msg:         "",
+			expectedMsg: "score is required",
+		},
+		{
+			name:        "test float value of `0` won't pass the required float valiation",
+			field:       "number",
+			value:       0,
+			isPassed:    false,
+			msg:         "number must be passed",
+			expectedMsg: "number must be passed",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.RequiredFloat(test.value, test.tag, test.message)
+		v.RequiredFloat(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }
 
 func TestValidator_RequiredSlice(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       []any
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			tag:         "t0",
+			name:        "test slice of `[]{1, 2, 3}` will pass the required slice valiation",
+			field:       "scores",
 			value:       []any{1, 2, 3},
-			message:     "",
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			tag:         "t1",
-			value:       []any{1.1, 5.2},
-			message:     "",
+			name:        "test slice of `{2.2, 12.6, 13.6}` will pass the required slice valiation",
+			field:       "averages",
+			value:       []any{2.2, 12.6, 13.6},
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			tag:         "t2",
+			name:        "test emtpy slice won't pass the required slice valiation",
+			field:       "scores",
 			value:       []any{},
-			message:     "t2 is required",
 			isPassed:    false,
-			expectedMsg: "t2 is required",
+			msg:         "",
+			expectedMsg: "scores is required",
 		},
 		{
-			tag:         "t3",
-			value:       []any{"Taylor, Smith", "Davies, O'Brien", "Wilson, Byrne"},
-			message:     "",
-			isPassed:    true,
-			expectedMsg: "",
+			name:        "test slice of names won't pass the required slice valiation",
+			field:       "names",
+			value:       []any{},
+			isPassed:    false,
+			msg:         "names is required",
+			expectedMsg: "names is required",
 		},
 	}
 
 	v := New()
+
 	for _, test := range tests {
-		v.RequiredSlice(test.value, test.tag, test.message)
+		v.RequiredSlice(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

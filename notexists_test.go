@@ -1,13 +1,15 @@
 package validator
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestValidator_NotExists(t *testing.T) {
 	tests := []struct {
-		tag         string
+		name        string
+		field       string
 		value       any
 		table       string
 		column      string
@@ -16,17 +18,9 @@ func TestValidator_NotExists(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			tag:         "username",
-			value:       "test_2",
-			table:       "users",
-			column:      "username",
-			isPassed:    false,
-			msg:         "user with this username already exists",
-			expectedMsg: "user with this username already exists",
-		},
-		{
-			tag:         "username",
-			value:       "test_3",
+			name:        "test username of joe doesn't exist in defined users table",
+			field:       "username",
+			value:       "joe",
 			table:       "users",
 			column:      "username",
 			isPassed:    true,
@@ -34,13 +28,24 @@ func TestValidator_NotExists(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			tag:         "username_2",
-			value:       "test_1",
+			name:        "test username of reza won't pass validation because it exists in defined users table",
+			field:       "username",
+			value:       "reza",
 			table:       "users",
 			column:      "username",
 			isPassed:    false,
 			msg:         "",
-			expectedMsg: "username_2 already exists",
+			expectedMsg: "username already exists",
+		},
+		{
+			name:        "test username of reza won't pass validation because it exists in defined users table",
+			field:       "username",
+			value:       "reza",
+			table:       "users",
+			column:      "username",
+			isPassed:    false,
+			msg:         "username `reza` already exists",
+			expectedMsg: "username `reza` already exists",
 		},
 	}
 
@@ -48,12 +53,19 @@ func TestValidator_NotExists(t *testing.T) {
 		WithRepo(repo{})
 
 	for _, test := range tests {
-		v.NotExists(test.value, test.table, test.column, test.tag, test.msg)
+		v.NotExists(test.value, test.table, test.column, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if v.IsFailed() {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.tag])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

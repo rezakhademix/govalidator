@@ -8,96 +8,118 @@ import (
 
 func TestValidator_MaxInt(t *testing.T) {
 	tests := []struct {
+		name        string
 		field       string
 		value       int
 		max         int
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			field:       "t0",
+			name:        "test integer value of `10` will pass if the validator defined maximum acceptable value to 10",
+			field:       "score",
 			value:       10,
 			max:         10,
-			message:     "",
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			field:       "t1",
-			value:       1,
-			max:         0,
-			message:     "",
+			name:        "test integer value of `71` won't pass because the validator defined maximum acceptable value to 50",
+			field:       "age",
+			value:       71,
+			max:         50,
 			isPassed:    false,
-			expectedMsg: "t1 should less than 0",
+			msg:         "",
+			expectedMsg: "age should be less than 50",
 		},
 		{
-			field:       "t2",
-			value:       122,
+			name:        "test integer value of `141` won't pass because the validator defined maximum acceptable value to 20 with custom msg",
+			field:       "goal",
+			value:       141,
 			max:         20,
-			message:     "t2 must be less than 20",
 			isPassed:    false,
-			expectedMsg: "t2 must be less than 20",
+			msg:         "goal have to be less than 20",
+			expectedMsg: "goal have to be less than 20",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MaxInt(test.value, test.max, test.field, test.message)
+		v.MaxInt(test.value, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }
 
 func TestValidator_MaxFloat64(t *testing.T) {
 	tests := []struct {
+		name        string
 		field       string
 		value       float64
 		max         float64
-		message     string
 		isPassed    bool
+		msg         string
 		expectedMsg string
 	}{
 		{
-			field:       "t0",
-			value:       10.1,
-			max:         10.8,
-			message:     "",
+			name:        "test float value of `20.4` will pass if the validator defined maximum acceptable value to 110.3",
+			field:       "score",
+			value:       20.4,
+			max:         110.3,
 			isPassed:    true,
+			msg:         "",
 			expectedMsg: "",
 		},
 		{
-			field:       "t1",
+			name:        "test float value of `0.1` won't pass because the validator defined maximum acceptable value to 0.01",
+			field:       "score",
 			value:       0.1,
 			max:         0.01,
-			message:     "",
 			isPassed:    false,
-			expectedMsg: "t1 should less than 0.01",
+			msg:         "",
+			expectedMsg: "score should be less than 0.01",
 		},
 		{
-			field:       "t2",
-			value:       122,
+			name:        "test float value of `141` won't pass because the validator defined maximum acceptable value to 20 with custom msg",
+			field:       "goal",
+			value:       122.23,
 			max:         20,
-			message:     "t2 must be less than 20",
 			isPassed:    false,
-			expectedMsg: "t2 must be less than 20",
+			msg:         "goal have to be less than 20",
+			expectedMsg: "goal have to be less than 20",
 		},
 	}
 
 	v := New()
 
 	for _, test := range tests {
-		v.MaxFloat(test.value, test.max, test.field, test.message)
+		v.MaxFloat(test.value, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
 		if !test.isPassed {
-			assert.Equal(t, test.expectedMsg, v.Errors()[test.field])
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected %v, got %v",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
 		}
 	}
 }

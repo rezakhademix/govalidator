@@ -16,6 +16,30 @@ func TestValidator_Email(t *testing.T) {
 		expectedMsg string
 	}{
 		{
+			name:        "test a correct email string value will pass validation",
+			field:       "email",
+			value:       "rezakhdemix@gmail.com",
+			isPassed:    true,
+			message:     "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test a wrong string value will fail email validation",
+			field:       "email",
+			value:       "09377475856",
+			isPassed:    false,
+			message:     "",
+			expectedMsg: "email is not valid",
+		},
+		{
+			name:        "test a wrong string value will fail email validation",
+			field:       "email",
+			value:       "^$*me%$e.com",
+			isPassed:    false,
+			message:     "",
+			expectedMsg: "email is not valid",
+		},
+		{
 			name:        "test an empty string value will fail email validation",
 			field:       "email",
 			value:       "",
@@ -31,30 +55,6 @@ func TestValidator_Email(t *testing.T) {
 			message:     "email_address is not valid",
 			expectedMsg: "email_address is not valid",
 		},
-		{
-			name:        "test a wrong string value will fail email validation",
-			field:       "email",
-			value:       "09377475856",
-			isPassed:    false,
-			message:     "email is not valid",
-			expectedMsg: "email is not valid",
-		},
-		{
-			name:        "test a wrong string value will fail email validation",
-			field:       "email",
-			value:       "^$*me%$e.com",
-			isPassed:    false,
-			message:     "email is not valid",
-			expectedMsg: "email is not valid",
-		},
-		{
-			name:        "test a correct email string value will pass validation",
-			field:       "email",
-			value:       "rezakhdemix@gmail.com",
-			isPassed:    true,
-			message:     "",
-			expectedMsg: "",
-		},
 	}
 
 	v := New()
@@ -69,7 +69,7 @@ func TestValidator_Email(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"assertion failed, expectedMsg: %s, validatorMsg: %s",
+				"test case %q failed, expectedMsg: %s, validatorMsg: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
