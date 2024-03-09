@@ -33,6 +33,8 @@ var (
 		Len:       LenMsg,
 		LenList:   LenListMsg,
 		Max:       MaxMsg,
+		MaxString: MaxStringMsg,
+		MinString: MinStringMsg,
 		Min:       MinMsg,
 		Between:   BetweenMsg,
 		NotExists: NotExistsMsg,
@@ -43,7 +45,7 @@ var (
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
-	ErrMethodMessageNotFound = errors.New("method message does not exist")
+	ErrMethodMessageNotFound = errors.New("method default validation message does not exist in methodToErrorMessage")
 )
 
 // New will return a new validator
