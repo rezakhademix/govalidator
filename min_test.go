@@ -132,3 +132,71 @@ func Test_MinFloat(t *testing.T) {
 		}
 	}
 }
+
+func Test_MinString(t *testing.T) {
+	tests := []struct {
+		name        string
+		field       string
+		value       string
+		min         int
+		isPassed    bool
+		msg         string
+		expectedMsg string
+	}{
+		{
+			name:        "test `rey` will pass validation when minimum valid length is 2",
+			field:       "name",
+			value:       "rey",
+			min:         2,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test empty string won't pass validation when minimum valid length is 5",
+			field:       "username",
+			value:       "",
+			min:         5,
+			isPassed:    false,
+			msg:         "",
+			expectedMsg: "username should has more than 5 characters",
+		},
+		{
+			name:        "test empty space string won't pass validation when minimum valid length is 2",
+			field:       "username",
+			value:       " ",
+			min:         2,
+			isPassed:    false,
+			msg:         "",
+			expectedMsg: "username should has more than 2 characters",
+		},
+		{
+			name:        "test `abcd` won't pass validation when minimum valid length is 7",
+			field:       "alphabet",
+			value:       "abcd",
+			min:         7,
+			isPassed:    false,
+			msg:         "alphabet should has more than 7 characters",
+			expectedMsg: "alphabet should has more than 7 characters",
+		},
+	}
+
+	v := New()
+
+	for _, test := range tests {
+		v.MinString(test.value, test.min, test.field, test.msg)
+
+		assert.Equal(t, test.isPassed, v.IsPassed())
+
+		if !test.isPassed {
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed: expected: %s, got: %s",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
+		}
+	}
+}
