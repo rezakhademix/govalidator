@@ -94,7 +94,7 @@ func TestValidator_Exists(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed, expected %v, got %v",
+				"test case %q failed, expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

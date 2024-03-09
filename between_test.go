@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_BetweenInt(t *testing.T) {
+func Test_BetweenInt(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -71,7 +71,7 @@ func TestValidator_BetweenInt(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed, expected %v, got %v",
+				"test case %q failed, expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -79,7 +79,7 @@ func TestValidator_BetweenInt(t *testing.T) {
 	}
 }
 
-func TestValidator_BetweenFloat(t *testing.T) {
+func Test_BetweenFloat(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -144,7 +144,7 @@ func TestValidator_BetweenFloat(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed, expected %v, got %v",
+				"test case %q failed, expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

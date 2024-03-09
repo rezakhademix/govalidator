@@ -58,7 +58,7 @@ func Test_In(t *testing.T) {
 			t,
 			test.expectedResult,
 			result,
-			"test case %q failed: expected %v, got %v",
+			"test case %q failed: expected: %s, got: %s",
 			test.name, test.expectedResult, result,
 		)
 	}

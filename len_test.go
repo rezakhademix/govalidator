@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_LenString(t *testing.T) {
+func Test_LenString(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -57,7 +57,7 @@ func TestValidator_LenString(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -65,7 +65,7 @@ func TestValidator_LenString(t *testing.T) {
 	}
 }
 
-func TestValidator_LenInt(t *testing.T) {
+func Test_LenInt(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -116,7 +116,7 @@ func TestValidator_LenInt(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -124,7 +124,7 @@ func TestValidator_LenInt(t *testing.T) {
 	}
 }
 
-func TestValidator_LenSlice(t *testing.T) {
+func Test_LenSlice(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -175,7 +175,7 @@ func TestValidator_LenSlice(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

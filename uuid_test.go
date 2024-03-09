@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_UUID(t *testing.T) {
+func Test_UUID(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string

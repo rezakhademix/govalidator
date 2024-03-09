@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_NotExists(t *testing.T) {
+func Test_NotExists(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -62,7 +62,7 @@ func TestValidator_NotExists(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

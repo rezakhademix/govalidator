@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_RequiredInt(t *testing.T) {
+func Test_RequiredInt(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -53,7 +53,7 @@ func TestValidator_RequiredInt(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -61,7 +61,7 @@ func TestValidator_RequiredInt(t *testing.T) {
 	}
 }
 
-func TestValidator_RequiredString(t *testing.T) {
+func Test_RequiredString(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -116,7 +116,7 @@ func TestValidator_RequiredString(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -124,7 +124,7 @@ func TestValidator_RequiredString(t *testing.T) {
 	}
 }
 
-func TestValidator_RequiredFloat(t *testing.T) {
+func Test_RequiredFloat(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -171,7 +171,7 @@ func TestValidator_RequiredFloat(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -179,7 +179,7 @@ func TestValidator_RequiredFloat(t *testing.T) {
 	}
 }
 
-func TestValidator_RequiredSlice(t *testing.T) {
+func Test_RequiredSlice(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -234,7 +234,7 @@ func TestValidator_RequiredSlice(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_MinInt(t *testing.T) {
+func Test_MinInt(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -57,7 +57,7 @@ func TestValidator_MinInt(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -65,7 +65,7 @@ func TestValidator_MinInt(t *testing.T) {
 	}
 }
 
-func TestValidator_MinFloat(t *testing.T) {
+func Test_MinFloat(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -125,7 +125,7 @@ func TestValidator_MinFloat(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
