@@ -1,9 +1,9 @@
 package validator
 
 const (
-	// Between represents the rule name which will be used to find the default error message.
+	// Between represents rule name which will be used to find the default error message.
 	Between = "between"
-	// BetweenMsg is the default error message format for between rule.
+	// BetweenMsg is the default error message format for fields with Between rule.
 	BetweenMsg = "%s should be greater than or equal %v and less than or equal %v"
 )
 

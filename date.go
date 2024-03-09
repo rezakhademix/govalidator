@@ -5,9 +5,9 @@ import (
 )
 
 const (
-	// Date represents the rule name which will be used to find the default error message.
+	// Date represents rule name which will be used to find the default error message.
 	Date = "date"
-	// DateMsg is the default error message format for fields with the Date validation rule.
+	// DateMsg is the default error message format for fields with Date validation rule.
 	DateMsg = "%s has wrong date format"
 )
 

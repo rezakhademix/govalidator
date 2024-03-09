@@ -3,13 +3,13 @@ package validator
 import "strings"
 
 const (
-	// Min represents the rule name which will be used to find the default error message.
+	// Min represents rule name which will be used to find the default error message.
 	Min = "min"
 	// MinString represents the rule name which will be used to find the default error message.
 	MinString = "minString"
-	// MinMsg is the default error message format for fields with the minimum validation rule.
+	// MinMsg is the default error message format for fields with Min validation rule.
 	MinMsg = "%s should be more than %v"
-	// MinStringMsg is the default error message format for fields with the MinString validation rule.
+	// MinStringMsg is the default error message format for fields with MinString validation rule.
 	MinStringMsg = "%s should has more than %v characters"
 )
 

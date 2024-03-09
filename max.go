@@ -3,13 +3,13 @@ package validator
 import "strings"
 
 const (
-	// Max represents the rule name which will be used to find the default error message.
+	// Max represents rule name which will be used to find the default error message.
 	Max = "max"
-	// MaxString represents the rule name which will be used to find the default error message.
+	// MaxString represents rule name which will be used to find the default error message.
 	MaxString = "maxString"
-	// MaxMsg is the default error message format for fields with the maximum validation rule.
+	// MaxMsg is the default error message format for fields with Max validation rule.
 	MaxMsg = "%s should be less than %v"
-	// MaxStringMsg is the default error message format for fields with the MaxString validation rule.
+	// MaxStringMsg is the default error message format for fields with MaxString validation rule.
 	MaxStringMsg = "%s should has less than %v characters"
 )
 
