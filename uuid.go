@@ -9,9 +9,13 @@ const (
 	UUIDMsg = "%s is not a valid UUID"
 )
 
-// UUID The field under validation must be a valid RFC 4122 universally unique identifier (UUID).
-// In addition, UUID accepts non-standard strings such as the raw hex encoding xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-// and 38 byte "Microsoft style" encodings, e.g. {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}.
+// UUID validates that the field under validation is a valid RFC 4122 universally unique identifier (UUID).
+// It accepts non-standard strings such as raw hex encoding xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// and 38 byte "Microsoft style" encodings, e.g., {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}.
+//
+// Example:
+//
+//	validator.UUID("f47ac10b-58cc-4372-a567-0e02b2c3d479", "uuid", "Invalid UUID format.")
 func (v *Validator) UUID(u, field, msg string) *Validator {
 	_, err := uuid.Parse(u)
 	if err != nil {

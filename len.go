@@ -16,21 +16,33 @@ const (
 	LenListMsg = "%s should have %d items"
 )
 
-// LenString checks if length of a string equal to give size or not.
+// LenString checks if the length of a string is equal to the given size or not.
+//
+// Example:
+//
+//	validator.LenString("rez", 5, "username", "username must be 5 characters.")
 func (v *Validator) LenString(s string, size int, field, msg string) *Validator {
 	v.Check(len(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
 
 	return v
 }
 
-// LenInt checks if length of an integer is equal to given size or not.
+// LenInt checks if the length of the given integer is equal to the given size or not.
+//
+// Example:
+//
+//	validator.LenInt(12345, 5, "zipcode", "Zip code must be 5 digits long.")
 func (v *Validator) LenInt(i, size int, field, msg string) *Validator {
 	v.Check(len(strconv.Itoa(i)) == size, field, v.msg(Len, msg, field, size))
 
 	return v
 }
 
-// LenSlice checks if length of a slice is equal to given size or not.
+// LenSlice checks if the length of the given slice is equal to the given size or not.
+//
+// Example:
+//
+//	validator.LenSlice([]int{1, 2, 3, 4, 5}, 5, "numbers", "the list must contain exactly 5 numbers.")
 func (v *Validator) LenSlice(s []any, size int, field, msg string) *Validator {
 	v.Check(len(s) == size, field, v.msg(LenList, msg, field, size))
 
