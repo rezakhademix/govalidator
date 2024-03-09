@@ -1,9 +1,9 @@
 package validator
 
 const (
-	// Min represents the rule name which will be used to find the default error message.
+	// Min represents rule name which will be used to find the default error message.
 	Min = "min"
-	// MinMsg is the default error message format for fields with the minimum validation rule.
+	// MinMsg is the default error message format for fields with Min validation rule.
 	MinMsg = "%s should be more than %v"
 )
 

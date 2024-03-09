@@ -1,9 +1,9 @@
 package validator
 
 const (
-	// Exists represents the rule name which will be used to find the default error message.
+	// Exists represents rule name which will be used to find the default error message.
 	Exists = "exists"
-	// ExistsMsg is default error message format for records that does not exist.
+	// ExistsMsg is default error message format for fields with Exists validation rule.
 	ExistsMsg = "%s does not exist"
 )
 

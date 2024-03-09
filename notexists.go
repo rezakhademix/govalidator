@@ -1,10 +1,10 @@
 package validator
 
 const (
-	// NotExists represents the rule name which will be used to find the default error message.
+	// NotExists represents rule name which will be used to find the default error message.
 	NotExists = "notExists"
 
-	// NotExistsMsg is default error message format for records that don't exist.
+	// NotExistsMsg is default error message format for fields with with NotExists validation rule.
 	NotExistsMsg = "%s already exists"
 )
 

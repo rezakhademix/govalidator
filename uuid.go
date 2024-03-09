@@ -3,7 +3,7 @@ package validator
 import "github.com/google/uuid"
 
 const (
-	// UUID represents the rule name which will be used to find the default error message.
+	// UUID represents rule name which will be used to find the default error message.
 	UUID = "uuid"
 	// UUIDMsg is the default error message format for fields with the UUID validation rule.
 	UUIDMsg = "%s is not a valid UUID"

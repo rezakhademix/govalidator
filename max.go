@@ -1,9 +1,9 @@
 package validator
 
 const (
-	// Max represents the rule name which will be used to find the default error message.
+	// Max represents rule name which will be used to find the default error message.
 	Max = "max"
-	// MaxMsg is the default error message format for fields with the maximum validation rule.
+	// MaxMsg is the default error message format for fields with the Max validation rule.
 	MaxMsg = "%s should be less than %v"
 )
 

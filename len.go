@@ -6,13 +6,13 @@ import (
 )
 
 const (
-	// Len represents the rule name which will be used to find the default error message.
+	// Len represents rule name which will be used to find the default error message.
 	Len = "len"
-	// LenList represents the rule name which will be used to find the default error message.
+	// LenList represents rule name which will be used to find the default error message.
 	LenList = "lenList"
-	// LenMsg is the default error message format for Len validation rule.
+	// LenMsg is the default error message format for fields with Len validation rule.
 	LenMsg = "%s should be %d characters"
-	// LenListMsg is the default error message format for LenSlice validation rule.
+	// LenListMsg is the default error message format for fields with LenList validation rule.
 	LenListMsg = "%s should have %d items"
 )
 

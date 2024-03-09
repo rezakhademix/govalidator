@@ -3,9 +3,9 @@ package validator
 import "strings"
 
 const (
-	// Required represents the rule name which will be used to find the default error message.
+	// Required represents rule name which will be used to find the default error message.
 	Required = "required"
-	// RequiredMsg is the default error message format for required fields.
+	// RequiredMsg is the default error message format for fields with required validation rule.
 	RequiredMsg = "%s is required"
 )
 
