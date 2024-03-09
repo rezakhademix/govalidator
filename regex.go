@@ -5,7 +5,7 @@ import "regexp"
 const (
 	// Regex represents rule name which will be used to find the default error message.
 	Regex = "regex"
-	// RegexMsg is the default error message format for fields with the Regex validation rule.
+	// RegexMsg is the default error message format for fields with Regex validation rule.
 	RegexMsg = "%s is not valid"
 )
 
