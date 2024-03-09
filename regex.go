@@ -9,7 +9,11 @@ const (
 	RegexMsg = "%s is not valid"
 )
 
-// RegexMatches checks the value of s under validation must match the given regular expression.
+// RegexMatches checks if the given value of s under validation matches the given regular expression pattern.
+//
+// Example:
+//
+//	validator.RegexMatches("example123", "[a-z]+[0-9]+", "input", "input must contain letters followed by numbers.")
 func (v *Validator) RegexMatches(s string, pattern string, field, msg string) *Validator {
 	r := regexp.MustCompile(pattern)
 

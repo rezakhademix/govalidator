@@ -7,14 +7,22 @@ const (
 	MaxMsg = "%s should be less than %v"
 )
 
-// MaxInt checks i to be less than given max value
+// MaxInt checks if the integer value is less than or equal the given max value.
+//
+// Example:
+//
+//	validator.MaxInt(10, 100, "age", "age must be less than 100.")
 func (v *Validator) MaxInt(i, max int, field, msg string) *Validator {
 	v.Check(i <= max, field, v.msg(Max, msg, field, max))
 
 	return v
 }
 
-// MaxFloat checks f to be less than given max value
+// MaxFloat checks if the given float value is less than or equal the given max value.
+//
+// Example:
+//
+//	validator.MaxFloat(3.5, 5.0, "height", "height must be less than 5.0 meters.")
 func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
 	v.Check(f <= max, field, v.msg(Max, msg, field, max))
 

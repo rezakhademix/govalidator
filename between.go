@@ -7,14 +7,22 @@ const (
 	BetweenMsg = "%s should be greater than or equal %v and less than or equal %v"
 )
 
-// BetweenInt checks i to be less than or requal given max and more than and equal given min value.
+// BetweenInt checks the value under validation to have an integer value between the given min and max.
+//
+// Example:
+//
+//	validator.BetweenInt(21, 1, 10, "age", "age must be between 1 and 10.")
 func (v *Validator) BetweenInt(i, min, max int, field, msg string) *Validator {
 	v.Check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
 
 	return v
 }
 
-// BetweenFloat checks f to be less than given max value and more than given min value.
+// BetweenFloat checks the field under validation to have a float value between the given min and max.
+//
+// Example:
+//
+//	validator.BetweenFloat(3.5, 2.0, 5.0, "height", "height must be between 2.0 and 5.0 meters.")
 func (v *Validator) BetweenFloat(f, min, max float64, field, msg string) *Validator {
 	v.Check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
 
