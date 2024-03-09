@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_When(t *testing.T) {
+func Test_When(t *testing.T) {
 	tests := []struct {
 		name         string
 		condition    bool
@@ -42,7 +42,7 @@ func TestValidator_When(t *testing.T) {
 			t,
 			test.expectedExec,
 			executed,
-			"test case %q failed, expectedMsg: %s, validatorMsg: %s",
+			"test case %q failed, expected %s, got: %s",
 			test.expectedExec,
 			executed,
 		)

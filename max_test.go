@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidator_MaxInt(t *testing.T) {
+func Test_MaxInt(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -57,7 +57,7 @@ func TestValidator_MaxInt(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)
@@ -65,7 +65,7 @@ func TestValidator_MaxInt(t *testing.T) {
 	}
 }
 
-func TestValidator_MaxFloat64(t *testing.T) {
+func Test_MaxFloat64(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -116,7 +116,7 @@ func TestValidator_MaxFloat64(t *testing.T) {
 				t,
 				test.expectedMsg,
 				v.Errors()[test.field],
-				"test case %q failed: expected %v, got %v",
+				"test case %q failed: expected: %s, got: %s",
 				test.expectedMsg,
 				v.Errors()[test.field],
 			)

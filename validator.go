@@ -39,6 +39,7 @@ var (
 		Regex:     RegexMsg,
 		Email:     EmailMsg,
 		UUID:      UUIDMsg,
+		Date:      DateMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
