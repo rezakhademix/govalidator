@@ -16,7 +16,9 @@ GoValidator includes a set of validation rules and a handy `check()` method for 
 
 Run the following command to install the package:
 
-`go get github.com/rezakhademix/govalidator`
+```
+go get github.com/rezakhademix/govalidator
+```
 
 ## govalidator examples:
 
