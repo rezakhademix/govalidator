@@ -1,4 +1,4 @@
-module github.com/rezakhademix/govalidator
+module github.com/rezakhademix/validator
 
 go 1.22.0
 

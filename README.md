@@ -1,6 +1,6 @@
-[![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/govalidator.svg)](https://pkg.go.dev/github.com/rezakhademix/govalidator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/govalidator)](https://goreportcard.com/report/github.com/rezakhademix/govalidator) [![codecov](https://codecov.io/gh/rezakhademix/govalidator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/govalidator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/validator.svg)](https://pkg.go.dev/github.com/rezakhademix/validator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/validator)](https://goreportcard.com/report/github.com/rezakhademix/validator) [![codecov](https://codecov.io/gh/rezakhademix/validator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/validator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
-## govalidator
+## Validator
 
 This is a Golang Validator package without any type assertion or reflection that provides data validation.
 
@@ -10,17 +10,17 @@ Go 1.22 or above.
 
 ## Getting Started
 
-GoValidator includes a set of validation rules and a handy `check()` method for defining any custom rule and You can use it to describe how a value should be considered valid.
+Go Validator includes a set of validation rules and a handy `check()` method for defining any custom rule and You can use it to describe how a value should be considered valid.
 
 ### Installation
 
 Run the following command to install the package:
 
 ```
-go get github.com/rezakhademix/govalidator
+go get github.com/rezakhademix/validator
 ```
 
-## govalidator examples:
+## Validator examples:
 
 1. simple:
    ```go
