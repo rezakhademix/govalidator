@@ -1,6 +1,6 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/govalidator.svg)](https://pkg.go.dev/github.com/rezakhademix/govalidator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/govalidator)](https://goreportcard.com/report/github.com/rezakhademix/govalidator) [![codecov](https://codecov.io/gh/rezakhademix/govalidator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/govalidator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
-## GOValidator
+## GoValidator
 
 This is a Golang Validator package without any type assertion or reflection that provides data validation.
 
@@ -53,7 +53,7 @@ go get github.com/rezakhademix/govalidator
     var user User
     _ := c.ShouldBind(&user)  // error ignored for simplicity
 
-    v := gogovalidator.New()
+    v := govalidator.New()
 
     v.MaxString(user.name, "first_name", "please fill first_name field") // with custom field name and custom validation message
 

@@ -6,7 +6,7 @@
 2. Download the sources and switch the working directory:
 
     ```bash
-    go get github.com/rezakhademix/validator
+    go get github.com/rezakhademix/govalidator
     ```
 
 ## Submitting a Pull Request
