@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 // In checks if the value under validation must be included in the given list of values.
 //

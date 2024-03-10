@@ -1,5 +1,5 @@
-// Package validator provides configurable rules for validating data of various types.
-package validator
+// Package govalidator provides configurable rules for validating data of various types.
+package govalidator
 
 import (
 	"errors"

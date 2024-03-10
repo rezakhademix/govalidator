@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 import "strings"
 
@@ -17,7 +17,7 @@ const (
 //
 // Example:
 //
-//	validator.MaxInt(10, 100, "age", "age must be less than 100.")
+//	govalidator.MaxInt(10, 100, "age", "age must be less than 100.")
 func (v *Validator) MaxInt(i, max int, field, msg string) *Validator {
 	v.Check(i <= max, field, v.msg(Max, msg, field, max))
 
@@ -28,7 +28,7 @@ func (v *Validator) MaxInt(i, max int, field, msg string) *Validator {
 //
 // Example:
 //
-//	validator.MaxFloat(3.5, 5.0, "height", "height must be less than 5.0 meters.")
+//	govalidator.MaxFloat(3.5, 5.0, "height", "height must be less than 5.0 meters.")
 func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
 	v.Check(f <= max, field, v.msg(Max, msg, field, max))
 
@@ -39,7 +39,7 @@ func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
 //
 // Example:
 //
-//	validator.MaxString("rey", 5, "name", "name should has less than 5 characters.")
+//	govalidator.MaxString("rey", 5, "name", "name should has less than 5 characters.")
 func (v *Validator) MaxString(s string, maxLen int, field, msg string) *Validator {
 	v.Check(len(strings.TrimSpace(s)) <= maxLen, field, v.msg(MaxString, msg, field, maxLen))
 

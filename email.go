@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 const (
 	// Email represents rule name which will be used to find the default error message.
@@ -13,7 +13,7 @@ const (
 //
 // Example:
 //
-//	validator.Email("john.doe@example.com", "email", "email address is not valid.")
+//	govalidator.Email("john.doe@example.com", "email", "email address is not valid.")
 func (v *Validator) Email(s, field, msg string) *Validator {
 	v.RegexMatches(s, EmailRegex, field, v.msg(Email, msg, field))
 

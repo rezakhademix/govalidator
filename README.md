@@ -32,7 +32,7 @@ go get github.com/rezakhademix/govalidator
        var user User
        _ := c.ShouldBind(&user)  // error ignored for simplicity
 
-       v := validator.New()
+       v := govalidator.New()
 
        v.RequiredInt(user.Age, "age").        // age can not be null or 0
          MinInt(int(user.Age), 18, "age")     // minimum value for age must be 18
@@ -53,7 +53,7 @@ go get github.com/rezakhademix/govalidator
     var user User
     _ := c.ShouldBind(&user)  // error ignored for simplicity
 
-    v := validator.New()
+    v := govalidator.New()
 
     v.MaxString(user.name, "first_name", "please fill first_name field") // with custom field name and custom validation message
 
@@ -63,7 +63,7 @@ go get github.com/rezakhademix/govalidator
    ```
 
 3. advanced usage:
-   You can define any custom rules or any flexible rule that does not exist in default validator package. Simply use `check()` method to define your desired data validations:
+   You can define any custom rules or any flexible rule that does not exist in default govalidator package. Simply use `check()` method to define your desired data validations:
 
 ```go
     type Profile struct {
@@ -77,7 +77,7 @@ go get github.com/rezakhademix/govalidator
 
    // after filling profile struct data with binding or other methods
 
-   v := validator.New()
+   v := govalidator.New()
 
    v.Check(profile.Name != "", "name", "name is required")  // check is a method to define rule as first parameter and then pass field name and validation error message
 

@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 // Unique checks whether the values in the provided slice are unique.
 //

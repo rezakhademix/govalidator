@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 import (
 	"testing"
@@ -153,7 +153,7 @@ func Test_LenSlice(t *testing.T) {
 			expectedMsg: "%s should have %d items",
 		},
 		{
-			name:        "test a slice of string values and len 3 won't pass because validator wants a slice with len of 11",
+			name:        "test a slice of string values and len 3 won't pass because govalidator wants a slice with len of 11",
 			field:       "names",
 			value:       []any{"sanchez", "marco", "lito"},
 			len:         11,
