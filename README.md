@@ -1,4 +1,4 @@
-[![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/validator.svg)](https://pkg.go.dev/github.com/rezakhademix/validator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/validator)](https://goreportcard.com/report/github.com/rezakhademix/validator) [![codecov](https://codecov.io/gh/rezakhademix/validator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/validator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/validator.svg)](https://pkg.go.dev/github.com/rezakhademix/validator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/govalidator)](https://goreportcard.com/report/github.com/rezakhademix/govalidator) [![codecov](https://codecov.io/gh/rezakhademix/validator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/validator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 ## Validator
 
