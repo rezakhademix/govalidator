@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 import (
 	"strconv"
@@ -20,7 +20,7 @@ const (
 //
 // Example:
 //
-//	validator.LenString("rez", 5, "username", "username must be 5 characters.")
+//	govalidator.LenString("rez", 5, "username", "username must be 5 characters.")
 func (v *Validator) LenString(s string, size int, field, msg string) *Validator {
 	v.Check(len(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
 
@@ -31,7 +31,7 @@ func (v *Validator) LenString(s string, size int, field, msg string) *Validator 
 //
 // Example:
 //
-//	validator.LenInt(12345, 5, "zipcode", "Zip code must be 5 digits long.")
+//	govalidator.LenInt(12345, 5, "zipcode", "Zip code must be 5 digits long.")
 func (v *Validator) LenInt(i, size int, field, msg string) *Validator {
 	v.Check(len(strconv.Itoa(i)) == size, field, v.msg(Len, msg, field, size))
 
@@ -42,7 +42,7 @@ func (v *Validator) LenInt(i, size int, field, msg string) *Validator {
 //
 // Example:
 //
-//	validator.LenSlice([]int{1, 2, 3, 4, 5}, 5, "numbers", "the list must contain exactly 5 numbers.")
+//	govalidator.LenSlice([]int{1, 2, 3, 4, 5}, 5, "numbers", "the list must contain exactly 5 numbers.")
 func (v *Validator) LenSlice(s []any, size int, field, msg string) *Validator {
 	v.Check(len(s) == size, field, v.msg(LenList, msg, field, size))
 

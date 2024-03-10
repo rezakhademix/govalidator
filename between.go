@@ -1,4 +1,4 @@
-package validator
+package govalidator
 
 const (
 	// Between represents rule name which will be used to find the default error message.
@@ -11,7 +11,7 @@ const (
 //
 // Example:
 //
-//	validator.BetweenInt(21, 1, 10, "age", "age must be between 1 and 10.")
+//	govalidator.BetweenInt(21, 1, 10, "age", "age must be between 1 and 10.")
 func (v *Validator) BetweenInt(i, min, max int, field, msg string) *Validator {
 	v.Check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
 
@@ -22,7 +22,7 @@ func (v *Validator) BetweenInt(i, min, max int, field, msg string) *Validator {
 //
 // Example:
 //
-//	validator.BetweenFloat(3.5, 2.0, 5.0, "height", "height must be between 2.0 and 5.0 meters.")
+//	govalidator.BetweenFloat(3.5, 2.0, 5.0, "height", "height must be between 2.0 and 5.0 meters.")
 func (v *Validator) BetweenFloat(f, min, max float64, field, msg string) *Validator {
 	v.Check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
 
