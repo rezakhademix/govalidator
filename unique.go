@@ -8,11 +8,11 @@ package validator
 //	result := Unique(values)
 //	// result will be true because all values in the slice are unique.
 func Unique[T comparable](values []T) bool {
-	unqiueValues := make(map[T]bool)
+	uniqueValues := make(map[T]bool)
 
 	for _, value := range values {
-		unqiueValues[value] = true
+		uniqueValues[value] = true
 	}
 
-	return len(values) == len(unqiueValues)
+	return len(values) == len(uniqueValues)
 }
