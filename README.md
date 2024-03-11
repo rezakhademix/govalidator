@@ -37,8 +37,6 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | BetweenFloat      | `BetweenFloat` checks whether value falls within the specified range or not.|
 | Date              | `Date` checks value to be a valid, non-relative date.|
 | Email             | `Email` checks value to match `EmailRegex` regular expression.|
-| Email             | `Email` checks value to match `EmailRegex` regular expression.|
-| Email             | `Email` checks value to match `EmailRegex` regular expression.|
 | Exists            | `Exists` checks given value exists in given table or not.|
 | NotExists         | `NotExists` checks given value doesn't exist in given table.|
 | LenString         | `LenString` checks length of given string is equal to given size or not.|
