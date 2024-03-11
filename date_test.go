@@ -67,7 +67,7 @@ func Test_Date(t *testing.T) {
 	v := New()
 
 	for _, test := range tests {
-		v.Date(test.value, test.layout, test.field, test.msg)
+		v.Date(test.layout, test.value, test.field, test.msg)
 
 		if !test.isPassed {
 			assert.Equalf(
