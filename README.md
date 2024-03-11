@@ -20,6 +20,12 @@ Run the following command to install the package:
 go get github.com/rezakhademix/govalidator
 ```
 
+Import package in your code-base by using:
+
+```
+import validator "github.com/rezakhademix/govalidator"
+```
+
 ## GoValidator examples:
 
 1. simple:
