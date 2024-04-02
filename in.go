@@ -4,7 +4,7 @@ package govalidator
 //
 // Example:
 //
-//	result := In("apple", "banana", "orange", "apple")
+//	result := validator.In("apple", "banana", "orange", "apple")
 //	// result will be true because "apple" is included in the list of acceptable values.
 func In[T comparable](value T, acceptableValues ...T) bool {
 	for i := range acceptableValues {

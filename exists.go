@@ -11,7 +11,11 @@ const (
 //
 // Example:
 //
-//	validator.Exists(42, "users", "id", "user_id", "user with id 42 does not exist.")
+//	v := validator.New()
+//	v.Exists(42, "users", "id", "user_id", "user with id 42 does not exist.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) Exists(value any, table, column, field, msg string) *Validator {
 	v.Check(v.repo.Exists(value, table, column), field, v.msg(Exists, msg, field))
 

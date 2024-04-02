@@ -13,7 +13,11 @@ const (
 //
 // Example:
 //
-//	validator.RequiredString("hello", "username", "username is required.")
+//	v := validator.New()
+//	v.RequiredString("hello", "username", "username is required.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, msg, field))
 
@@ -24,7 +28,11 @@ func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 //
 // Example:
 //
-//	validator.RequiredInt(42, "age", "age is required.")
+//	v := validator.New()
+//	v.RequiredInt(42, "age", "age is required.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 	v.Check(i != 0, field, v.msg(Required, msg, field))
 
@@ -35,7 +43,11 @@ func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 //
 // Example:
 //
-//	validator.RequiredSlice([]string{"apple", "banana", "orange"}, "fruits", "at least one fruit must be provided.")
+//	v := validator.New()
+//	v.RequiredSlice([]string{"apple", "banana", "orange"}, "fruits", "at least one fruit must be provided.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator {
 	v.Check(len(s) > 0, field, v.msg(Required, msg, field))
 
@@ -46,7 +58,11 @@ func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator 
 //
 // Example:
 //
-//	validator.RequiredFloat(3.5, "weight", "weight is required.")
+//	v := validator.New()
+//	v.RequiredFloat(3.5, "weight", "weight is required.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
 	v.Check(f != 0.0, field, v.msg(Required, msg, field))
 

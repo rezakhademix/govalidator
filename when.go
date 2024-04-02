@@ -4,9 +4,13 @@ package govalidator
 //
 // Example:
 //
-//	validator.When(len(username) > 0, func() {
+//	v := validator.New()
+//	v.When(len(username) > 0, func() {
 //	    validator.RequiredString(username, "username", "username is required.")
 //	})
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) When(condition bool, f func()) *Validator {
 	if condition {
 		f()
