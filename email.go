@@ -13,7 +13,7 @@ const (
 //
 // Example:
 //
-//	govalidator.Email("john.doe@example.com", "email", "email address is not valid.")
+//	validator.Email("john.doe@example.com", "email", "email address is not valid.")
 func (v *Validator) Email(s, field, msg string) *Validator {
 	v.RegexMatches(s, EmailRegex, field, v.msg(Email, msg, field))
 

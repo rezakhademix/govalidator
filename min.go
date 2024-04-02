@@ -17,7 +17,7 @@ const (
 //
 // Example:
 //
-//	govalidator.MinInt(18, 0, "age", "age must be at least 0.")
+//	validator.MinInt(18, 0, "age", "age must be at least 0.")
 func (v *Validator) MinInt(i, min int, field, msg string) *Validator {
 	v.Check(i >= min, field, v.msg(Min, msg, field, min))
 
@@ -28,7 +28,7 @@ func (v *Validator) MinInt(i, min int, field, msg string) *Validator {
 //
 // Example:
 //
-//	govalidator.MinFloat(5.0, 0.0, "height", "height must be at least 0.0 meters.")
+//	validator.MinFloat(5.0, 0.0, "height", "height must be at least 0.0 meters.")
 func (v *Validator) MinFloat(f, min float64, field, msg string) *Validator {
 	v.Check(f >= min, field, v.msg(Min, msg, field, min))
 
@@ -39,7 +39,7 @@ func (v *Validator) MinFloat(f, min float64, field, msg string) *Validator {
 //
 // Example:
 //
-//	govalidator.MinString("rey", 5, "name", "name should has more than 5 characters.")
+//	validator.MinString("rey", 5, "name", "name should has more than 5 characters.")
 func (v *Validator) MinString(s string, minLen int, field, msg string) *Validator {
 	v.Check(len(strings.TrimSpace(s)) >= minLen, field, v.msg(MinString, msg, field, minLen))
 
