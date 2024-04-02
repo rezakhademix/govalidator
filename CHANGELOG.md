@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.2 (2024-04-02)
+
+- History of changes: see https://github.com/rezakhademix/govalidator/compare/v1.1.1...v1.1.2
+
 ## v1.1.1 (2024-03-11)
 
 - History of changes: see https://github.com/rezakhademix/govalidator/compare/v1.1.0...v1.1.1
