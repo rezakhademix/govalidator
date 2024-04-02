@@ -5,7 +5,7 @@ package govalidator
 // Example:
 //
 //	values := []int{1, 2, 3, 4, 5}
-//	result := Unique(values)
+//	result := validator.Unique(values)
 //	// result will be true because all values in the slice are unique.
 func Unique[T comparable](values []T) bool {
 	uniqueValues := make(map[T]bool)

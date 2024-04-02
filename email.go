@@ -13,7 +13,11 @@ const (
 //
 // Example:
 //
-//	validator.Email("john.doe@example.com", "email", "email address is not valid.")
+//	v := validator.New()
+//	v.Email("john.doe@example.com", "email", "email address is not valid.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
 func (v *Validator) Email(s, field, msg string) *Validator {
 	v.RegexMatches(s, EmailRegex, field, v.msg(Email, msg, field))
 
