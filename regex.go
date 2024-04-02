@@ -13,7 +13,7 @@ const (
 //
 // Example:
 //
-//	govalidator.RegexMatches("example123", "[a-z]+[0-9]+", "input", "input must contain letters followed by numbers.")
+//	validator.RegexMatches("example123", "[a-z]+[0-9]+", "input", "input must contain letters followed by numbers.")
 func (v *Validator) RegexMatches(s string, pattern string, field, msg string) *Validator {
 	r := regexp.MustCompile(pattern)
 

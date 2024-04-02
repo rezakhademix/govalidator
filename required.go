@@ -13,7 +13,7 @@ const (
 //
 // Example:
 //
-//	govalidator.RequiredString("hello", "username", "username is required.")
+//	validator.RequiredString("hello", "username", "username is required.")
 func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, msg, field))
 
@@ -24,7 +24,7 @@ func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 //
 // Example:
 //
-//	govalidator.RequiredInt(42, "age", "age is required.")
+//	validator.RequiredInt(42, "age", "age is required.")
 func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 	v.Check(i != 0, field, v.msg(Required, msg, field))
 
@@ -35,7 +35,7 @@ func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 //
 // Example:
 //
-//	govalidator.RequiredSlice([]string{"apple", "banana", "orange"}, "fruits", "at least one fruit must be provided.")
+//	validator.RequiredSlice([]string{"apple", "banana", "orange"}, "fruits", "at least one fruit must be provided.")
 func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator {
 	v.Check(len(s) > 0, field, v.msg(Required, msg, field))
 
@@ -46,7 +46,7 @@ func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator 
 //
 // Example:
 //
-//	govalidator.RequiredFloat(3.5, "weight", "weight is required.")
+//	validator.RequiredFloat(3.5, "weight", "weight is required.")
 func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
 	v.Check(f != 0.0, field, v.msg(Required, msg, field))
 

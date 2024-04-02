@@ -15,7 +15,7 @@ const (
 //
 // Example:
 //
-//	govalidator.UUID("f47ac10b-58cc-4372-a567-0e02b2c3d479", "uuid", "Invalid UUID format.")
+//	validator.UUID("f47ac10b-58cc-4372-a567-0e02b2c3d479", "uuid", "Invalid UUID format.")
 func (v *Validator) UUID(u, field, msg string) *Validator {
 	_, err := uuid.Parse(u)
 	if err != nil {

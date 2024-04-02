@@ -15,7 +15,7 @@ const (
 //
 // Example:
 //
-//	govalidator.Date("2006-01-02", "2024-03-09","birthdate", "birthdate must be a valid date in the format YYYY-MM-DD.")
+//	validator.Date("2006-01-02", "2024-03-09","birthdate", "birthdate must be a valid date in the format YYYY-MM-DD.")
 func (v *Validator) Date(layout, d, field, msg string) *Validator {
 	_, err := time.Parse(layout, d)
 	if err != nil {
