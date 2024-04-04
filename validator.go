@@ -44,6 +44,7 @@ var (
 		Date:      DateMsg,
 		URL:       URLMsg,
 		Before:    BeforeMsg,
+		After:     AfterMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
