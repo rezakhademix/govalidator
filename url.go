@@ -5,9 +5,9 @@ import (
 )
 
 const (
-	// Url represents rule name which will be used to find the default error message.
+	// URL represents rule name which will be used to find the default error message.
 	URL = "url"
-	// UrlMsg is the default error message format for fields with Url validation rule.
+	// URLMsg is the default error message format for fields with Url validation rule.
 	URLMsg = "%s should be a valid url"
 )
 
