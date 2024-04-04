@@ -42,6 +42,7 @@ var (
 		Email:     EmailMsg,
 		UUID:      UUIDMsg,
 		Date:      DateMsg,
+		Url:       UrlMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.
