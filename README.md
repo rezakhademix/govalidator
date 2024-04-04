@@ -7,7 +7,7 @@ Our goal is to avoid using any type assertion or reflection for simplicity.
 We would be delighted if you were interested in helping us improve the GoValidator package. Feel free to make your pull request.
 
 # Getting Started
-Go Validator includes a set of validation rules and a handy `check()` method for defining any custom rule.
+Go Validator includes a set of validation rules and a handy `check()` method for defining any custom **rule**.
 
 ## Installation
 Run the following command to install the package:
@@ -51,6 +51,10 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | RegexMatches      | `RegexMatches` checks given string matches given regular expression pattern.|
 | UUID              | `UUID` checks given value is a valid universally unique identifier (UUID).|
 | When              | `When` will execute given closure if given condition is true.|
+| URL               | `URL` will check given string is a valid URL or not.|
+| Before            | `Before` will check if given time instant t is before given time instant u.|
+| After             | `After` will check if given time instant t is after given time instant u.|
+| IP4               | `IP4` will check whether given string is a valid IPV4.|
 
 ### Functions (other common validation rules)
 ---
