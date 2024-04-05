@@ -1,7 +1,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/rezakhademix/govalidator.svg)](https://pkg.go.dev/github.com/rezakhademix/govalidator) [![Go Report Card](https://goreportcard.com/badge/github.com/rezakhademix/govalidator)](https://goreportcard.com/report/github.com/rezakhademix/govalidator) [![codecov](https://codecov.io/gh/rezakhademix/govalidator/graph/badge.svg?token=BDWNVIC670)](https://codecov.io/gh/rezakhademix/govalidator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 # GoValidator
-GoValidator is a data validation package that can sanitize and validate your data to ensure its safety and integrity as much as possible.
+GoValidator is a data validation package that can sanitize and validate your data to ensure its safety and integrity as much as possible. GoValidator will not use struct tags as validation and there is no need of them.
 
 Our goal is to avoid using any type assertion or reflection for simplicity.
 We would be delighted if you were interested in helping us improve the GoValidator package. Feel free to make your pull request.
