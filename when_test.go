@@ -29,9 +29,9 @@ func Test_When(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		executed := false
 
 		v.When(test.condition, func() {

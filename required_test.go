@@ -41,9 +41,9 @@ func Test_RequiredInt(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.RequiredInt(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -104,9 +104,9 @@ func Test_RequiredString(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.RequiredString(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -159,9 +159,9 @@ func Test_RequiredFloat(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.RequiredFloat(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -222,9 +222,9 @@ func Test_RequiredSlice(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.RequiredSlice(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

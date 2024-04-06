@@ -45,9 +45,9 @@ func Test_MaxInt(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MaxInt(test.value, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -104,9 +104,9 @@ func Test_MaxFloat64(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MaxFloat(test.value, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -159,7 +159,7 @@ func Test_MaxString(t *testing.T) {
 			max:         -1,
 			isPassed:    false,
 			msg:         "",
-			expectedMsg: "username should has less than -1 characters",
+			expectedMsg: "username should have less than -1 characters",
 		},
 		{
 			name:        "test `abcd` won't pass validation when maximum valid length is 3",
@@ -167,14 +167,14 @@ func Test_MaxString(t *testing.T) {
 			value:       "abcd",
 			max:         3,
 			isPassed:    false,
-			msg:         "alphabet should has less than 3 characters",
-			expectedMsg: "alphabet should has less than 3 characters",
+			msg:         "alphabet should have less than 3 characters",
+			expectedMsg: "alphabet should have less than 3 characters",
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MaxString(test.value, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

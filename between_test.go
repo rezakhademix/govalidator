@@ -59,9 +59,9 @@ func Test_BetweenInt(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.BetweenInt(test.value, test.min, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -132,9 +132,9 @@ func Test_BetweenFloat(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.BetweenFloat(test.value, test.min, test.max, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

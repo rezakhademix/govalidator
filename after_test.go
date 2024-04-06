@@ -41,14 +41,14 @@ func Test_After(t *testing.T) {
 			value:       "2022-01-01",
 			afterValue:  "2022-02-01",
 			isPassed:    false,
-			msg:         "birth_date can't be after 2022-02-01.",
-			expectedMsg: "birth_date can't be after 2022-02-01.",
+			msg:         "birth_date can't be before 2022-02-01.",
+			expectedMsg: "birth_date can't be before 2022-02-01.",
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		value, _ := time.Parse("2006-01-02", test.value)
 		afterValue, _ := time.Parse("2006-01-02", test.afterValue)
 

@@ -45,9 +45,9 @@ func Test_MinInt(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MinInt(test.value, test.min, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -113,9 +113,9 @@ func Test_MinFloat(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MinFloat(test.value, test.min, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -159,7 +159,7 @@ func Test_MinString(t *testing.T) {
 			min:         5,
 			isPassed:    false,
 			msg:         "",
-			expectedMsg: "username should has more than 5 characters",
+			expectedMsg: "username should have more than 5 characters",
 		},
 		{
 			name:        "test empty space string won't pass validation when minimum valid length is 2",
@@ -168,7 +168,7 @@ func Test_MinString(t *testing.T) {
 			min:         2,
 			isPassed:    false,
 			msg:         "",
-			expectedMsg: "username should has more than 2 characters",
+			expectedMsg: "username should have more than 2 characters",
 		},
 		{
 			name:        "test `abcd` won't pass validation when minimum valid length is 7",
@@ -176,14 +176,14 @@ func Test_MinString(t *testing.T) {
 			value:       "abcd",
 			min:         7,
 			isPassed:    false,
-			msg:         "alphabet should has more than 7 characters",
-			expectedMsg: "alphabet should has more than 7 characters",
+			msg:         "alphabet should have more than 7 characters",
+			expectedMsg: "alphabet should have more than 7 characters",
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.MinString(test.value, test.min, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

@@ -45,9 +45,9 @@ func Test_LenString(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.LenString(test.value, test.len, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -104,9 +104,9 @@ func Test_LenInt(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.LenInt(test.value, test.len, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
@@ -163,9 +163,9 @@ func Test_LenSlice(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.LenSlice(test.value, test.len, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
