@@ -46,9 +46,9 @@ func Test_Before(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		value, _ := time.Parse("2006-01-02", test.value)
 		beforeValue, _ := time.Parse("2006-01-02", test.beforeValue)
 

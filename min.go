@@ -10,7 +10,7 @@ const (
 	// MinMsg is the default error message format for fields with Min validation rule.
 	MinMsg = "%s should be more than %v"
 	// MinStringMsg is the default error message format for fields with MinString validation rule.
-	MinStringMsg = "%s should has more than %v characters"
+	MinStringMsg = "%s should have more than %v characters"
 )
 
 // MinInt checks if the given integer value is greater than or equal the given min value.
@@ -48,7 +48,7 @@ func (v *Validator) MinFloat(f, min float64, field, msg string) *Validator {
 // Example:
 //
 //	v := validator.New()
-//	v.MinString("rey", 5, "name", "name should has more than 5 characters.")
+//	v.MinString("rey", 5, "name", "name should have more than 5 characters.")
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}

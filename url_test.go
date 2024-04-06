@@ -73,9 +73,9 @@ func Test_Url(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.URL(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed(), test.name)

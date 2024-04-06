@@ -4,28 +4,23 @@ package govalidator
 import (
 	"errors"
 	"fmt"
-	"maps"
 )
 
 type (
-	// Err is the defined type which will be returned when one or many validator rules fail.
-	Err = map[string]string
-	// Validator represents the validator structure
-	Validator struct {
-		repo Repository
-	}
-
 	// Repository represent a repository for using in rules that needs a database connection to
 	// check a record exists on database or not.
 	Repository interface {
 		Exists(value any, table, column string) bool
 	}
+
+	// Validator represents the validator structure
+	Validator struct {
+		errs map[string]string
+		repo Repository
+	}
 )
 
 var (
-	// errs is a map of errors which has all of failed rule messages.
-	errs = make(Err)
-
 	// methodToErrorMessage contains each validation method and its corresponding error message.
 	methodToErrorMessage = map[string]string{
 		Required:  RequiredMsg,
@@ -54,7 +49,9 @@ var (
 
 // New will return a new validator
 func New() *Validator {
-	return &Validator{}
+	return &Validator{
+		errs: make(map[string]string),
+	}
 }
 
 // WithRepo sets the desired repository for use in the Exists validation rule.
@@ -70,7 +67,7 @@ func (v *Validator) WithRepo(r Repository) *Validator {
 
 // IsPassed checks if the validator result has passed or not.
 func (v *Validator) IsPassed() bool {
-	return len(errs) == 0
+	return len(v.Errors()) == 0
 }
 
 // IsFailed  checks if the validator result has failed or not.
@@ -79,12 +76,8 @@ func (v *Validator) IsFailed() bool {
 }
 
 // Errors returns a map of all validator rule errors.
-func (v *Validator) Errors() Err {
-	vErrs := maps.Clone(errs)
-
-	errs = make(map[string]string)
-
-	return vErrs
+func (v *Validator) Errors() map[string]string {
+	return v.errs
 }
 
 // Check is a dynamic method to define any custom validator rule by passing a rule as a function or expression
@@ -97,8 +90,8 @@ func (v *Validator) Check(ok bool, field, msg string) {
 
 // addError fills the errors map and prevents duplicate fields from being added to validator errors.
 func (v *Validator) addError(field, msg string) {
-	if _, exists := errs[field]; !exists {
-		errs[field] = msg
+	if _, exists := v.Errors()[field]; !exists {
+		v.Errors()[field] = msg
 	}
 }
 

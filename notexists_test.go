@@ -49,10 +49,10 @@ func Test_NotExists(t *testing.T) {
 		},
 	}
 
-	v := New().
-		WithRepo(repo{})
-
 	for _, test := range tests {
+		v := New().
+			WithRepo(repo{})
+
 		v.NotExists(test.value, test.table, test.column, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

@@ -4,7 +4,7 @@
 default: help
 
 test: ## run all tests
-	go test -v ./...
+	go test -v --race ./...
 
 test-one: ## run only tests matching the passed regex as `name`
 ifdef name

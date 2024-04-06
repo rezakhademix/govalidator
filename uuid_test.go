@@ -57,9 +57,9 @@ func Test_UUID(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		v.UUID(test.value, test.field, test.msg)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())

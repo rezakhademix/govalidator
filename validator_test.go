@@ -33,9 +33,9 @@ func Test_msg(t *testing.T) {
 		},
 	}
 
-	v := New()
-
 	for _, test := range tests {
+		v := New()
+
 		assert.PanicsWithError(t, test.expectedMsg, func() { v.msg(test.method, test.msg) })
 	}
 }

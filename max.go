@@ -10,7 +10,7 @@ const (
 	// MaxMsg is the default error message format for fields with Max validation rule.
 	MaxMsg = "%s should be less than %v"
 	// MaxStringMsg is the default error message format for fields with MaxString validation rule.
-	MaxStringMsg = "%s should has less than %v characters"
+	MaxStringMsg = "%s should have less than %v characters"
 )
 
 // MaxInt checks if the integer value is less than or equal the given max value.
@@ -48,7 +48,7 @@ func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
 // Example:
 //
 //	v := validator.New()
-//	v.MaxString("rey", 5, "name", "name should has less than 5 characters.")
+//	v.MaxString("rey", 5, "name", "name should have less than 5 characters.")
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
