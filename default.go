@@ -1,25 +1,31 @@
 package govalidator
 
-// Sets a default value for any pointer to an int thats is passed
+// DefaultInt sets a default value for any pointer to an int thats is passed
 // if value does not exists, then set the default specified as the new value.
-func (v Validator) DefaultInt(i *int, val int) {
+func (v *Validator) DefaultInt(i *int, val int) *Validator {
 	if i == nil || *i == 0 {
 		*i = val
 	}
+
+	return v
 }
 
-// Sets a default value for any pointer to an float thats is passed
+// DefaultFloat sets a default value for any pointer to an float thats is passed
 // if value does not exists, then set the default specified as the new value.
-func (v Validator) DefaultFloat(f *float64, val float64) {
+func (v *Validator) DefaultFloat(f *float64, val float64) *Validator {
 	if f == nil || *f == 0 {
 		*f = val
 	}
+
+	return v
 }
 
-// Sets a default value for a pointer to a string.
+// DefaultString sets a default value for a pointer to a string.
 // if value does not exists, then set the default specified as the new value.
-func (v Validator) DefaultString(s *string, val string) {
+func (v *Validator) DefaultString(s *string, val string) *Validator {
 	if s == nil {
 		*s = val
 	}
+
+	return v
 }
