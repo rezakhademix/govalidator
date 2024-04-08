@@ -23,7 +23,7 @@ func (v *Validator) DefaultFloat(f *float64, val float64) *Validator {
 // DefaultString sets a default value for a pointer to a string.
 // if value does not exists, then set the default specified as the new value.
 func (v *Validator) DefaultString(s *string, val string) *Validator {
-	if s == nil {
+	if s == nil || *s == "" {
 		*s = val
 	}
 
