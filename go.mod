@@ -1,4 +1,4 @@
-module github.com/rezakhademix/govalidator
+module github.com/rezakhademix/govalidator/v2
 
 go 1.22.0
 
