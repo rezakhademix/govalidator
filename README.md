@@ -55,6 +55,9 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | Before            | `Before` will check if given time instant t is before given time instant u.|
 | After             | `After` will check if given time instant t is after given time instant u.|
 | IP4               | `IP4` will check whether given string is a valid IPV4.|
+| DefaultInt        | `DefaultInt` sets a default value for any pointer to an int that is passed.|
+| DefaultFloat      | `DefaultFloat` sets a default value for any pointer to a float that is passed.|
+| DefaultString     | `DefaultString` sets a default value for any pointer to a string that is passed.|
 
 ### Functions (other common validation rules)
 ---
