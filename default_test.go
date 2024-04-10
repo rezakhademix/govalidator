@@ -34,7 +34,14 @@ func Test_DefaultInt(t *testing.T) {
 	for _, test := range tests {
 		test.setDefault(&test.actual, test.defaultValue)
 
-		assert.Equal(t, test.actual, test.expected)
+		assert.Equalf(
+			t,
+			test.actual,
+			test.expected,
+			"test case %q failed, expected: %s, got: %s",
+			test.expected,
+			test.actual,
+		)
 	}
 }
 
@@ -66,7 +73,14 @@ func Test_DefaultFloat(t *testing.T) {
 	for _, test := range tests {
 		test.setDefault(&test.actual, test.defaultValue)
 
-		assert.Equal(t, test.actual, test.expected)
+		assert.Equalf(
+			t,
+			test.actual,
+			test.expected,
+			"test case %q failed, expected: %s, got: %s",
+			test.expected,
+			test.actual,
+		)
 	}
 }
 
@@ -98,6 +112,13 @@ func Test_DefaultString(t *testing.T) {
 	for _, test := range tests {
 		test.setDefault(&test.actual, test.defaultValue)
 
-		assert.Equal(t, test.actual, test.expected)
+		assert.Equalf(
+			t,
+			test.actual,
+			test.expected,
+			"test case %q failed, expected: %s, got: %s",
+			test.expected,
+			test.actual,
+		)
 	}
 }
