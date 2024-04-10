@@ -1,13 +1,13 @@
 package govalidator
 
-// DefaultInt sets a default value for any pointer to an int thats is passed
-// if value does not exists, then set the default specified as the new value.
+// DefaultInt sets a default value for any pointer to an int that is passed
+// if value does not exist, will set the default specified as the new value.
 //
 // Example:
 //
 //	v := validator.New()
-//	var ZeroKelvin int64
-//	v.DefaultInt(&s, -273)
+//	var zeroKelvin int64
+//	v.DefaultInt(&zeroKelvin, -273)
 func (v *Validator) DefaultInt(i *int, val int) *Validator {
 	if i == nil || *i == 0 {
 		*i = val
@@ -16,8 +16,8 @@ func (v *Validator) DefaultInt(i *int, val int) *Validator {
 	return v
 }
 
-// DefaultFloat sets a default value for any pointer to an float thats is passed
-// if value does not exists, then set the default specified as the new value.
+// DefaultFloat sets a default value for any pointer to a float that is passed
+// if value does not exist, will set the default specified as the new value.
 //
 // Example:
 //
@@ -32,14 +32,14 @@ func (v *Validator) DefaultFloat(f *float64, val float64) *Validator {
 	return v
 }
 
-// DefaultString sets a default value for a pointer to a string.
-// if value does not exists, then set the default specified as the new value.
+// DefaultString sets a default value for any pointer to a string that is passed.
+// if value does not exist, will set the default specified as the new value.
 //
 // Example:
 //
 //	v := validator.New()
 //	var lang string
-//	v.DefaultString(&s, "persian")
+//	v.DefaultString(&lang, "persian")
 func (v *Validator) DefaultString(s *string, val string) *Validator {
 	if s == nil || *s == "" {
 		*s = val
