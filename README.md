@@ -83,7 +83,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
         v := govalidator.New()
 
         v.RequiredInt(user.Age, "age", "").         // age can not be null or 0
-            MinInt(int(user.Age), 18, "age", "")    // minimum value for age is 18
+            MinInt(user.Age, 18, "age", "")         // minimum value for age is 18
 
         v.RequiredString(user.Name, "name", "")     // name can not be null, "" or " "
             MaxString(user.Name, 50, "name", "")    // maximum acceptable length for name field is 50
