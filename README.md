@@ -12,12 +12,12 @@ Go Validator includes a set of validation rules and a handy `check()` method for
 ## Installation
 Run the following command to install the package:
 ```
-go get github.com/rezakhademix/govalidator
+go get github.com/rezakhademix/govalidator/v2
 ```
 ## Import
 Import package in your code-base by using:
 ```
-import validator "github.com/rezakhademix/govalidator"
+import validator "github.com/rezakhademix/govalidator/v2"
 ```
 
 # Documentation
@@ -27,44 +27,44 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 ### Methods (also known as validation rules)
 ---
 
-| Method | Description |
-| - | - |
-| RequiredInt       | `RequiredInt` checks if an integer value is provided or not.|
-| RequiredFloat     | `RequiredFloat` checks if a float value is provided or not.|
-| RequiredString    | `RequiredString` checks if a string value is empty or not.|
-| RequiredSlice     | `RequiredSlice` checks if a slice has any value or not.|
-| BetweenInt        | `BetweenInt` checks whether value falls within the specified range or not.|
-| BetweenFloat      | `BetweenFloat` checks whether value falls within the specified range or not.|
-| Date              | `Date` checks value to be a valid, non-relative date.|
-| Email             | `Email` checks value to match `EmailRegex` regular expression.|
-| Exists            | `Exists` checks given value exists in given table or not.|
-| NotExists         | `NotExists` checks given value doesn't exist in given table.|
-| LenString         | `LenString` checks length of given string is equal to given size or not.|
-| LenInt            | `LenInt` checks length of given integer is equal to given size or not.|
-| LenSlice          | `LenSlice` checks length of given slice is equal to given size or not.|
-| MaxInt            | `MaxInt` checks given integer is less than or equal given max value.|
-| MaxFloat          | `MaxFloat` checks given float is less than or equal given max value.|
-| MaxString         | `MaxString` checks length of given string is less than or equal given max value.|
-| MinInt            | `MinInt` checks given integer is greater than or equal given min value.|
-| MinFloat          | `MinFloat` checks given float is greater than or equal given min value.|
-| MinString         | `MinString` checks length of given string is greater than or equal given min value.|
-| RegexMatches      | `RegexMatches` checks given string matches given regular expression pattern.|
-| UUID              | `UUID` checks given value is a valid universally unique identifier (UUID).|
-| When              | `When` will execute given closure if given condition is true.|
-| URL               | `URL` will check given string is a valid URL or not.|
-| Before            | `Before` will check if given time instant t is before given time instant u.|
-| After             | `After` will check if given time instant t is after given time instant u.|
-| IP4               | `IP4` will check whether given string is a valid IPV4.|
-| DefaultInt        | `DefaultInt` sets a default value for any pointer to an int that is passed.|
-| DefaultFloat      | `DefaultFloat` sets a default value for any pointer to a float that is passed.|
-| DefaultString     | `DefaultString` sets a default value for any pointer to a string that is passed.|
+| Method         | Description                                                                         |
+| -------------- | ----------------------------------------------------------------------------------- |
+| RequiredInt    | `RequiredInt` checks if an integer value is provided or not.                        |
+| RequiredFloat  | `RequiredFloat` checks if a float value is provided or not.                         |
+| RequiredString | `RequiredString` checks if a string value is empty or not.                          |
+| RequiredSlice  | `RequiredSlice` checks if a slice has any value or not.                             |
+| BetweenInt     | `BetweenInt` checks whether value falls within the specified range or not.          |
+| BetweenFloat   | `BetweenFloat` checks whether value falls within the specified range or not.        |
+| Date           | `Date` checks value to be a valid, non-relative date.                               |
+| Email          | `Email` checks value to match `EmailRegex` regular expression.                      |
+| Exists         | `Exists` checks given value exists in given table or not.                           |
+| NotExists      | `NotExists` checks given value doesn't exist in given table.                        |
+| LenString      | `LenString` checks length of given string is equal to given size or not.            |
+| LenInt         | `LenInt` checks length of given integer is equal to given size or not.              |
+| LenSlice       | `LenSlice` checks length of given slice is equal to given size or not.              |
+| MaxInt         | `MaxInt` checks given integer is less than or equal given max value.                |
+| MaxFloat       | `MaxFloat` checks given float is less than or equal given max value.                |
+| MaxString      | `MaxString` checks length of given string is less than or equal given max value.    |
+| MinInt         | `MinInt` checks given integer is greater than or equal given min value.             |
+| MinFloat       | `MinFloat` checks given float is greater than or equal given min value.             |
+| MinString      | `MinString` checks length of given string is greater than or equal given min value. |
+| RegexMatches   | `RegexMatches` checks given string matches given regular expression pattern.        |
+| UUID           | `UUID` checks given value is a valid universally unique identifier (UUID).          |
+| When           | `When` will execute given closure if given condition is true.                       |
+| URL            | `URL` will check given string is a valid URL or not.                                |
+| Before         | `Before` will check if given time instant t is before given time instant u.         |
+| After          | `After` will check if given time instant t is after given time instant u.           |
+| IP4            | `IP4` will check whether given string is a valid IPV4.                              |
+| DefaultInt     | `DefaultInt` sets a default value for any pointer to an int that is passed.         |
+| DefaultFloat   | `DefaultFloat` sets a default value for any pointer to a float that is passed.      |
+| DefaultString  | `DefaultString` sets a default value for any pointer to a string that is passed.    |
 
 ### Functions (other common validation rules)
 ---
-| Method | Description |
-| - | - |
-| In        | `In` checks given value is included in the provided list of values.|
-| Unique    | `Unique` checks whether values in the provided slice are unique.|
+| Method | Description                                                         |
+| ------ | ------------------------------------------------------------------- |
+| In     | `In` checks given value is included in the provided list of values. |
+| Unique | `Unique` checks whether values in the provided slice are unique.    |
 
 
 ---
