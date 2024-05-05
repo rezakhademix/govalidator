@@ -1,6 +1,9 @@
 package govalidator
 
-import "strings"
+import (
+	"strings"
+	"unicode/utf8"
+)
 
 const (
 	// Max represents rule name which will be used to find the default error message.
@@ -53,7 +56,7 @@ func (v *Validator) MaxFloat(f, max float64, field, msg string) *Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v *Validator) MaxString(s string, maxLen int, field, msg string) *Validator {
-	v.Check(len(strings.TrimSpace(s)) <= maxLen, field, v.msg(MaxString, msg, field, maxLen))
+	v.Check(utf8.RuneCountInString(strings.TrimSpace(s)) <= maxLen, field, v.msg(MaxString, msg, field, maxLen))
 
 	return v
 }

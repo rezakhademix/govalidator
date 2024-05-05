@@ -3,6 +3,7 @@ package govalidator
 import (
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 const (
@@ -26,7 +27,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v *Validator) LenString(s string, size int, field, msg string) *Validator {
-	v.Check(len(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
+	v.Check(utf8.RuneCountInString(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
 
 	return v
 }

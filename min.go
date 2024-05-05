@@ -1,6 +1,9 @@
 package govalidator
 
-import "strings"
+import (
+	"strings"
+	"unicode/utf8"
+)
 
 const (
 	// Min represents rule name which will be used to find the default error message.
@@ -53,7 +56,7 @@ func (v *Validator) MinFloat(f, min float64, field, msg string) *Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v *Validator) MinString(s string, minLen int, field, msg string) *Validator {
-	v.Check(len(strings.TrimSpace(s)) >= minLen, field, v.msg(MinString, msg, field, minLen))
+	v.Check(utf8.RuneCountInString(strings.TrimSpace(s)) >= minLen, field, v.msg(MinString, msg, field, minLen))
 
 	return v
 }
