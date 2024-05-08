@@ -18,7 +18,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) RegexMatches(s string, pattern string, field, msg string) *Validator {
+func (v Validator) RegexMatches(s string, pattern string, field, msg string) Validator {
 	r := regexp.MustCompile(pattern)
 
 	v.Check(r.Match([]byte(s)), field, v.msg(Regex, msg))

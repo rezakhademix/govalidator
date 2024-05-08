@@ -18,7 +18,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) RequiredString(s, field string, msg string) *Validator {
+func (v Validator) RequiredString(s, field string, msg string) Validator {
 	v.Check(strings.TrimSpace(s) != "", field, v.msg(Required, msg, field))
 
 	return v
@@ -33,7 +33,7 @@ func (v *Validator) RequiredString(s, field string, msg string) *Validator {
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
+func (v Validator) RequiredInt(i int, field string, msg string) Validator {
 	v.Check(i != 0, field, v.msg(Required, msg, field))
 
 	return v
@@ -48,7 +48,7 @@ func (v *Validator) RequiredInt(i int, field string, msg string) *Validator {
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator {
+func (v Validator) RequiredSlice(s []any, field string, msg string) Validator {
 	v.Check(len(s) > 0, field, v.msg(Required, msg, field))
 
 	return v
@@ -63,7 +63,7 @@ func (v *Validator) RequiredSlice(s []any, field string, msg string) *Validator 
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) RequiredFloat(f float64, field string, msg string) *Validator {
+func (v Validator) RequiredFloat(f float64, field string, msg string) Validator {
 	v.Check(f != 0.0, field, v.msg(Required, msg, field))
 
 	return v

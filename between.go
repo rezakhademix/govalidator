@@ -16,7 +16,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) BetweenInt(i, min, max int, field, msg string) *Validator {
+func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
 	v.Check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
 
 	return v
@@ -31,7 +31,7 @@ func (v *Validator) BetweenInt(i, min, max int, field, msg string) *Validator {
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) BetweenFloat(f, min, max float64, field, msg string) *Validator {
+func (v Validator) BetweenFloat(f, min, max float64, field, msg string) Validator {
 	v.Check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
 
 	return v

@@ -20,7 +20,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) UUID(u, field, msg string) *Validator {
+func (v Validator) UUID(u, field, msg string) Validator {
 	_, err := uuid.Parse(u)
 	if err != nil {
 		v.Check(false, field, v.msg(UUID, msg, field))

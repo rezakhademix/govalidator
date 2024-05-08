@@ -8,7 +8,7 @@ package govalidator
 //	v := validator.New()
 //	var zeroKelvin int64
 //	v.DefaultInt(&zeroKelvin, -273)
-func (v *Validator) DefaultInt(i *int, val int) *Validator {
+func (v Validator) DefaultInt(i *int, val int) Validator {
 	if i == nil || *i == 0 {
 		*i = val
 	}
@@ -24,7 +24,7 @@ func (v *Validator) DefaultInt(i *int, val int) *Validator {
 //	v := validator.New()
 //	var f float64
 //	v.DefaultFloat(&f, 3.14)
-func (v *Validator) DefaultFloat(f *float64, val float64) *Validator {
+func (v Validator) DefaultFloat(f *float64, val float64) Validator {
 	if f == nil || *f == 0 {
 		*f = val
 	}
@@ -40,7 +40,7 @@ func (v *Validator) DefaultFloat(f *float64, val float64) *Validator {
 //	v := validator.New()
 //	var lang string
 //	v.DefaultString(&lang, "persian")
-func (v *Validator) DefaultString(s *string, val string) *Validator {
+func (v Validator) DefaultString(s *string, val string) Validator {
 	if s == nil || *s == "" {
 		*s = val
 	}

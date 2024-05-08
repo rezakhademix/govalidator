@@ -14,7 +14,7 @@ func Test_DefaultInt(t *testing.T) {
 		actual       int
 		expected     int
 		defaultValue int
-		setDefault   func(*int, int) *Validator
+		setDefault   func(*int, int) Validator
 	}{
 		{
 			name:         "Test default int of '3' wont be used if value is greater than 0 or nil",
@@ -53,7 +53,7 @@ func Test_DefaultFloat(t *testing.T) {
 		actual       float64
 		expected     float64
 		defaultValue float64
-		setDefault   func(*float64, float64) *Validator
+		setDefault   func(*float64, float64) Validator
 	}{
 		{
 			name:         "Test default float of '5.0' won't be used if value is greater than 0.0 or nil",
@@ -92,7 +92,7 @@ func Test_DefaultString(t *testing.T) {
 		actual       string
 		expected     string
 		defaultValue string
-		setDefault   func(*string, string) *Validator
+		setDefault   func(*string, string) Validator
 	}{
 		{
 			name:         "Test default string of 'something' won't be used if a value is already valid",

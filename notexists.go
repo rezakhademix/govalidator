@@ -17,7 +17,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) NotExists(value any, table, column, field, msg string) *Validator {
+func (v Validator) NotExists(value any, table, column, field, msg string) Validator {
 	v.Check(!v.repo.Exists(value, table, column), field, v.msg(NotExists, msg, field))
 
 	return v

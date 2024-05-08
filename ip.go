@@ -18,7 +18,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) IP4(s, field, msg string) *Validator {
+func (v Validator) IP4(s, field, msg string) Validator {
 	ip := net.ParseIP(s)
 
 	v.Check(ip != nil && ip.To4() != nil, field, v.msg(IP4, msg, field))

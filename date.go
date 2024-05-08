@@ -20,7 +20,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) Date(layout, d, field, msg string) *Validator {
+func (v Validator) Date(layout, d, field, msg string) Validator {
 	_, err := time.Parse(layout, d)
 	if err != nil {
 		v.Check(false, field, v.msg(Date, msg, field))
