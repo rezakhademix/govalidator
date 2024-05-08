@@ -11,7 +11,7 @@ package govalidator
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) When(condition bool, f func()) *Validator {
+func (v Validator) When(condition bool, f func()) Validator {
 	if condition {
 		f()
 	}

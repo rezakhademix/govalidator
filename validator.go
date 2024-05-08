@@ -48,8 +48,8 @@ var (
 )
 
 // New will return a new validator
-func New() *Validator {
-	return &Validator{
+func New() Validator {
+	return Validator{
 		errs: make(map[string]string),
 	}
 }
@@ -59,37 +59,37 @@ func New() *Validator {
 // Example:
 //
 //	validator := New().WithRepo(myRepository)
-func (v *Validator) WithRepo(r Repository) *Validator {
+func (v Validator) WithRepo(r Repository) Validator {
 	v.repo = r
 
 	return v
 }
 
 // IsPassed checks if the validator result has passed or not.
-func (v *Validator) IsPassed() bool {
+func (v Validator) IsPassed() bool {
 	return len(v.Errors()) == 0
 }
 
 // IsFailed  checks if the validator result has failed or not.
-func (v *Validator) IsFailed() bool {
+func (v Validator) IsFailed() bool {
 	return !v.IsPassed()
 }
 
 // Errors returns a map of all validator rule errors.
-func (v *Validator) Errors() map[string]string {
+func (v Validator) Errors() map[string]string {
 	return v.errs
 }
 
 // Check is a dynamic method to define any custom validator rule by passing a rule as a function or expression
 // which will return a boolean.
-func (v *Validator) Check(ok bool, field, msg string) {
+func (v Validator) Check(ok bool, field, msg string) {
 	if !ok {
 		v.addError(field, msg)
 	}
 }
 
 // addError fills the errors map and prevents duplicate fields from being added to validator errors.
-func (v *Validator) addError(field, msg string) {
+func (v Validator) addError(field, msg string) {
 	if _, exists := v.Errors()[field]; !exists {
 		v.Errors()[field] = msg
 	}
@@ -97,7 +97,7 @@ func (v *Validator) addError(field, msg string) {
 
 // msg returns the error message. If a custom error message is set, it returns the formatted custom message;
 // otherwise, it returns the default message for the rule which has been set on the validator.
-func (v *Validator) msg(method, msg string, fieldArgs ...any) string {
+func (v Validator) msg(method, msg string, fieldArgs ...any) string {
 	if msg != "" {
 		return msg
 	}

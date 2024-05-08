@@ -20,7 +20,7 @@ const (
 //	if v.IsFailed() {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v *Validator) URL(s, field, msg string) *Validator {
+func (v Validator) URL(s, field, msg string) Validator {
 	u, err := url.Parse(s)
 
 	v.Check(err == nil && u.Scheme != "" && u.Host != "", field, v.msg(URL, msg, field))
