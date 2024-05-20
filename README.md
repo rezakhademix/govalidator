@@ -12,7 +12,7 @@ Go Validator includes a set of validation rules and a handy `check()` method for
 ## Installation
 Run the following command to install the package:
 ```
-go get github.com/rezakhademix/govalidator/v2
+go get github.com/rezakhademix/govalidator
 ```
 ## Import
 Import package in your code-base by using:
