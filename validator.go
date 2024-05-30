@@ -11,6 +11,7 @@ type (
 	// check a record exists on database or not.
 	Repository interface {
 		Exists(value any, table, column string) bool
+		ExistsExceptSelf(value any, table, column string, selfID int) bool
 	}
 
 	// Validator represents the validator structure
@@ -80,9 +81,8 @@ func (v Validator) Errors() map[string]string {
 	return v.errs
 }
 
-// Check is a dynamic method to define any custom validator rule by passing a rule as a function or expression
-// which will return a boolean.
-func (v Validator) Check(ok bool, field, msg string) {
+// check is the internal method easily validate each validator method result
+func (v Validator) check(ok bool, field, msg string) {
 	if !ok {
 		v.addError(field, msg)
 	}

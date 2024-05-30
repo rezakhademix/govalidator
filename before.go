@@ -23,7 +23,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) Before(t, u time.Time, field, msg string) Validator {
-	v.Check(t.Before(u), field, v.msg(Before, msg, field, u))
+	v.check(t.Before(u), field, v.msg(Before, msg, field, u))
 
 	return v
 }

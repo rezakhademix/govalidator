@@ -26,7 +26,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MinInt(i, min int, field, msg string) Validator {
-	v.Check(i >= min, field, v.msg(Min, msg, field, min))
+	v.check(i >= min, field, v.msg(Min, msg, field, min))
 
 	return v
 }
@@ -41,7 +41,7 @@ func (v Validator) MinInt(i, min int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MinFloat(f, min float64, field, msg string) Validator {
-	v.Check(f >= min, field, v.msg(Min, msg, field, min))
+	v.check(f >= min, field, v.msg(Min, msg, field, min))
 
 	return v
 }
@@ -56,7 +56,7 @@ func (v Validator) MinFloat(f, min float64, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MinString(s string, minLen int, field, msg string) Validator {
-	v.Check(utf8.RuneCountInString(strings.TrimSpace(s)) >= minLen, field, v.msg(MinString, msg, field, minLen))
+	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) >= minLen, field, v.msg(MinString, msg, field, minLen))
 
 	return v
 }

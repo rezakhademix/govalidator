@@ -38,6 +38,21 @@ func (repo) Exists(value any, table, column string) bool {
 	return false
 }
 
+func (repo) ExistsExceptSelf(value any, table, column string, selfID int) bool {
+	data, exists := tables[table]
+	if !exists {
+		return false
+	}
+
+	for _, item := range data {
+		if item[column] == value {
+			return true
+		}
+	}
+
+	return false
+}
+
 func TestValidator_Exists(t *testing.T) {
 	tests := []struct {
 		name        string
