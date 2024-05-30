@@ -164,17 +164,18 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         v := govalidator.New()  // be sure to import govalidator/v2
 		    
-		ok := v.RequiredString(req.Name, "name", msgCategoryNameRequired).
-		  MaxString(req.Name, nameMaxLength, "name", msgCategoryNameMaxLength).
-		  MinString(req.Name, nameMinLength, "name", msgCategoryNameMinLength).
-		  NotExists(req.Name, "categories", "name", "name", msgCategoryNameAlreadyExists). // ensure the value of req.Name does not exist in the "name" column of the "categories" table in the database
-		  MaxString(req.Description, descriptionMaxLength, "description", msgdescriptionMaxLength).
-		  MinInt(req.Status, minStatus, "status", msgMinCategoryStatusIsWrong).
-		  MaxInt(req.Status, maxStatus, "status", msgMaxCategoryStatusIsWrong).
-		  When(req.ParentID != nil, func() {  
-                v.Exists(*req.ParentID, "categories", "id", "parent_id", msgCategoryParentIDNotExist)   // checks if the value of req.ParentID exists in the "id" column of the "categories" table in the database
-		  }).
-		  IsPassed()
+		ok := v.
+			RequiredString(req.Name, "name", msgCategoryNameRequired).
+			MaxString(req.Name, nameMaxLength, "name", msgCategoryNameMaxLength).
+			MinString(req.Name, nameMinLength, "name", msgCategoryNameMinLength).
+			NotExists(req.Name, "categories", "name", "name", msgCategoryNameAlreadyExists). // ensure the value of req.Name does not exist in the "name" column of the "categories" table in the database
+		  	MaxString(req.Description, descriptionMaxLength, "description", msgdescriptionMaxLength).
+		  	MinInt(req.Status, minStatus, "status", msgMinCategoryStatusIsWrong).
+		  	MaxInt(req.Status, maxStatus, "status", msgMaxCategoryStatusIsWrong).
+		  	When(req.ParentID != nil, func() {  
+                		v.Exists(*req.ParentID, "categories", "id", "parent_id", msgCategoryParentIDNotExist)   // checks if the value of req.ParentID exists in the "id" column of the "categories" table in the database
+			}).
+		  	IsPassed()
 
         if !ok {
           return v.Errors()
