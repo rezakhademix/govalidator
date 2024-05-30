@@ -23,7 +23,7 @@ const (
 func (v Validator) UUID(u, field, msg string) Validator {
 	_, err := uuid.Parse(u)
 	if err != nil {
-		v.Check(false, field, v.msg(UUID, msg, field))
+		v.check(false, field, v.msg(UUID, msg, field))
 
 		return v
 	}

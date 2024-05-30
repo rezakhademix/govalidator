@@ -21,7 +21,7 @@ const (
 func (v Validator) RegexMatches(s string, pattern string, field, msg string) Validator {
 	r := regexp.MustCompile(pattern)
 
-	v.Check(r.Match([]byte(s)), field, v.msg(Regex, msg))
+	v.check(r.Match([]byte(s)), field, v.msg(Regex, msg))
 
 	return v
 }

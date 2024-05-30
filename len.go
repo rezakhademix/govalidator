@@ -27,7 +27,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenString(s string, size int, field, msg string) Validator {
-	v.Check(utf8.RuneCountInString(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
+	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
 
 	return v
 }
@@ -42,7 +42,7 @@ func (v Validator) LenString(s string, size int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenInt(i, size int, field, msg string) Validator {
-	v.Check(len(strconv.Itoa(i)) == size, field, v.msg(Len, msg, field, size))
+	v.check(len(strconv.Itoa(i)) == size, field, v.msg(Len, msg, field, size))
 
 	return v
 }
@@ -57,7 +57,7 @@ func (v Validator) LenInt(i, size int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenSlice(s []any, size int, field, msg string) Validator {
-	v.Check(len(s) == size, field, v.msg(LenList, msg, field, size))
+	v.check(len(s) == size, field, v.msg(LenList, msg, field, size))
 
 	return v
 }

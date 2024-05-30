@@ -17,7 +17,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
-	v.Check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
+	v.check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
 
 	return v
 }
@@ -32,7 +32,7 @@ func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) BetweenFloat(f, min, max float64, field, msg string) Validator {
-	v.Check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
+	v.check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
 
 	return v
 }

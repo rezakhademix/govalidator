@@ -23,7 +23,7 @@ const (
 func (v Validator) URL(s, field, msg string) Validator {
 	u, err := url.Parse(s)
 
-	v.Check(err == nil && u.Scheme != "" && u.Host != "", field, v.msg(URL, msg, field))
+	v.check(err == nil && u.Scheme != "" && u.Host != "", field, v.msg(URL, msg, field))
 
 	return v
 }
