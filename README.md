@@ -113,7 +113,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
          }
    ```
 
-3. Advanced usage with any custom validation rule: You can define any custom rules or any flexible rule that does not exist in default govalidator package. Simply use check() method to define your desired data validations:
+3. Advanced usage with any custom validation rule: You can define any custom rules or any flexible rule that does not exist in default govalidator package. Simply use `CustomRule()` method to define your desired data validations:
 
     ```go
         type Profile struct {
