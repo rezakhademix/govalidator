@@ -10,7 +10,32 @@ type (
 	// Repository represent a repository for using in rules that needs a database connection to
 	// check a record exists on database or not.
 	Repository interface {
+		// Exists checks whether a given value exists in a specified column of a table.
+		// This function is typically used to validate the uniqueness of a value in a database.
+		//
+		// Parameters:
+		// - value: The value to check for existence.
+		// - table: The name of the table to search within.
+		// - column: The column to check for the value.
+		//
+		// Returns:
+		// - bool: Returns true if the value exists in the specified column of the table;
+		//         otherwise, returns false.
 		Exists(value any, table, column string) bool
+
+		// ExistsExceptSelf checks whether a given value exists in a specified column of a table,
+		// excluding a row identified by selfID. This is typically used to ensure the uniqueness
+		// of a value in a table, while allowing updates to a row without triggering a false positive.
+		//
+		// Parameters:
+		// - value: The value to check for existence.
+		// - table: The name of the table to search within.
+		// - column: The column to check for the value.
+		// - selfID: The ID of the row to exclude from the check.
+		//
+		// Returns:
+		// - bool: Returns true if the value exists in the specified column of the table, excluding
+		//
 		ExistsExceptSelf(value any, table, column string, selfID int) bool
 	}
 
