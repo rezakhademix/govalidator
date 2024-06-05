@@ -129,7 +129,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         v := govalidator.New()
 
-        v.CustomRule(profile.Name != "", "name", "name is required")  // check is a method to define rule as first parameter and then pass field name and validation error message
+        v.CustomRule(profile.Name != "", "name", "name is required")  // CustomRule is a method to define a custom rule as first parameter and then pass field name and validation error message
 
         v.CustomRule(profile.Age > 18, "age", "age must be greater than 18")
 
