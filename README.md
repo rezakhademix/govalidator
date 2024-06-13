@@ -174,7 +174,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 		  	MaxString(req.Description, descriptionMaxLength, "description", msgDescriptionMaxLength).
 		  	MinInt(req.Status, minStatus, "status", msgMinCategoryStatusIsWrong).
 		  	MaxInt(req.Status, maxStatus, "status", msgMaxCategoryStatusIsWrong).
-            		IsJSON(req.Meta, "meta", msgMetaMustBeJSON).
+    		IsJSON(req.Meta, "meta", msgMetaMustBeJSON).
 		  	When(req.ParentID != nil, func() {  
                 		v.Exists(*req.ParentID, "categories", "id", "parent_id", msgCategoryParentIDNotExist)   // checks if the value of req.ParentID exists in the "id" column of the "categories" table in the database
 			}).
