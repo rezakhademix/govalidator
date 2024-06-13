@@ -59,12 +59,13 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | DefaultInt       | `DefaultInt` sets a default value for any pointer to an int that is passed.                                         |
 | DefaultFloat     | `DefaultFloat` sets a default value for any pointer to a float that is passed.                                      |
 | DefaultString    | `DefaultString` sets a default value for any pointer to a string that is passed.                                    |
+| IsJSON           | `IsJSON` will check if given string is a valid JSON.                                                                |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
 
 ### Functions (other common validation rules)
 ---
 | Method | Description                                                         |
-| ------ | ------------------------------------------------------------------- |
+|--------|---------------------------------------------------------------------|
 | In     | `In` checks given value is included in the provided list of values. |
 | Unique | `Unique` checks whether values in the provided slice are unique.    |
 
@@ -125,7 +126,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         var profile Profile
 
-        // after filling profile struct data with binding or other methods
+        // after filling profile struct with binding or other methods
 
         v := govalidator.New()
 
@@ -155,12 +156,13 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 	        Name        string `json:"name"`
 	        Description string `json:"description"`
 	        Status      int    `json:"status"`
+            Meta        string `json:"meta"`
         }
 
 
         var categoryCreateReq CategoryCreateReq
 
-        // after filling categoryCreateReq struct data with binding or other methods
+        // after filling CategoryCreateReq struct with binding or other methods
 
         v := govalidator.New()  // be sure to import govalidator/v2
 		    
@@ -169,9 +171,10 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 			MaxString(req.Name, nameMaxLength, "name", msgCategoryNameMaxLength).
 			MinString(req.Name, nameMinLength, "name", msgCategoryNameMinLength).
 			NotExists(req.Name, "categories", "name", "name", msgCategoryNameAlreadyExists). // ensure the value of req.Name does not exist in the "name" column of the "categories" table in the database
-		  	MaxString(req.Description, descriptionMaxLength, "description", msgdescriptionMaxLength).
+		  	MaxString(req.Description, descriptionMaxLength, "description", msgDescriptionMaxLength).
 		  	MinInt(req.Status, minStatus, "status", msgMinCategoryStatusIsWrong).
 		  	MaxInt(req.Status, maxStatus, "status", msgMaxCategoryStatusIsWrong).
+            IsJSON(req.Meta, "meta", msgMetaMustBeJSON).
 		  	When(req.ParentID != nil, func() {  
                 		v.Exists(*req.ParentID, "categories", "id", "parent_id", msgCategoryParentIDNotExist)   // checks if the value of req.ParentID exists in the "id" column of the "categories" table in the database
 			}).
