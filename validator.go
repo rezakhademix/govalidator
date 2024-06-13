@@ -67,6 +67,7 @@ var (
 		Before:    BeforeMsg,
 		After:     AfterMsg,
 		IP4:       IP4Msg,
+		JSON:      JSONMsg,
 	}
 
 	// ErrMethodMessageNotFound is the default message when a method does not have any error message on methodToErrorMessage.

@@ -34,7 +34,7 @@ func Test_IP4(t *testing.T) {
 		{
 			name:        "test empty space string won't pass the ip4 validation rule",
 			field:       "server_ip",
-			value:       "",
+			value:       " ",
 			isPassed:    false,
 			message:     "",
 			expectedMsg: "server_ip should be a valid ipv4",
