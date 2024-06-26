@@ -28,7 +28,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 ---
 
 | Method           | Description                                                                                                         |
-|------------------|---------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- |
 | RequiredInt      | `RequiredInt` checks if an integer value is provided or not.                                                        |
 | RequiredFloat    | `RequiredFloat` checks if a float value is provided or not.                                                         |
 | RequiredString   | `RequiredString` checks if a string value is empty or not.                                                          |
@@ -60,12 +60,13 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | DefaultFloat     | `DefaultFloat` sets a default value for any pointer to a float that is passed.                                      |
 | DefaultString    | `DefaultString` sets a default value for any pointer to a string that is passed.                                    |
 | IsJSON           | `IsJSON` will check if given string is a valid JSON.                                                                |
+| NumericString    | `NumericString` will check if given value is a valid string of numbers.                                             |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
 
 ### Functions (other common validation rules)
 ---
 | Method | Description                                                         |
-|--------|---------------------------------------------------------------------|
+| ------ | ------------------------------------------------------------------- |
 | In     | `In` checks given value is included in the provided list of values. |
 | Unique | `Unique` checks whether values in the provided slice are unique.    |
 
