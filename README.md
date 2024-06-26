@@ -7,7 +7,7 @@ Our goal is to avoid using any type assertion or reflection for simplicity.
 We would be delighted if you were interested in helping us improve the GoValidator package. Feel free to make your pull request.
 
 # Getting Started
-Go Validator includes a set of validation rules and a handy `check()` method for defining any custom **rule**.
+Go Validator includes a set of validation rules and a handy `CustomRule()` method to define any custom **rule**.
 
 ## Installation
 Run the following command to install the package:
