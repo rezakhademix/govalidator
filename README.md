@@ -61,6 +61,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | DefaultString    | `DefaultString` sets a default value for any pointer to a string that is passed.                                    |
 | IsJSON           | `IsJSON` will check if given string is a valid JSON.                                                                |
 | NumericString    | `NumericString` will check if given value is a valid string of numbers.                                             |
+| MAC              | `MAC` will check if given value is a valid MAC address.                                                             |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
 
 ### Functions (other common validation rules)
