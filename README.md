@@ -12,7 +12,7 @@ Go Validator includes a set of validation rules and a handy `CustomRule()` metho
 ## Installation
 Run the following command to install the package:
 ```
-go get github.com/rezakhademix/govalidator
+go get github.com/rezakhademix/govalidator/v2
 ```
 ## Import
 Import package in your code-base by using:
@@ -166,7 +166,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         // after filling CategoryCreateReq struct with binding or other methods
 
-        v := govalidator.New()  // be sure to import govalidator/v2
+        v := govalidator.New().WithRepo(validatorRepo)  // be sure to import govalidator/v2
 		    
 		ok := v.
 			RequiredString(req.Name, "name", msgCategoryNameRequired).
