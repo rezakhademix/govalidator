@@ -83,8 +83,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
         }
 
         var user User
-        _ := c.Bind(&user)  // error ignored for simplicity
-
+       
         v := govalidator.New() // be sure to import govalidator/v2
 
         v.RequiredInt(user.Age, "age", "").         // age can not be null or 0
@@ -105,7 +104,6 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
         }
 
         var user User
-        _ := c.ShouldBind(&user)  // error ignored for simplicity
 
         v := govalidator.New()
 
@@ -128,7 +126,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         var profile Profile
 
-        // after filling profile struct with binding or other methods
+        // after filling profile struct
 
         v := govalidator.New()
 
