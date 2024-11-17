@@ -75,7 +75,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 ---
 ### Examples:
 ---
-1. Simple usage:
+1. Simple usage: ([Go Playground](https://go.dev/play/p/pBlw_TMCggh))
     ```go
         type User struct {
             Name string `json:"name"`
@@ -107,7 +107,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
         v := govalidator.New()
 
-        v.MaxString(user.Name, "first_name", "please fill first_name field") // with custom field name and custom validation error message
+        v.RequiredString(user.Name, "first_name", "please fill first_name field") // with custom field name and custom validation error message
 
         if v.IsFailed() {
             return v.Errors()
