@@ -75,7 +75,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 ---
 ### Examples:
 ---
-1. Simple usage: ([Go Playground](https://go.dev/play/p/pBlw_TMCggh))
+1. Simple usage: ([Go Playground](https://go.dev/play/p/qevHb1KqOHf))
     ```go
         type User struct {
             Name string `json:"name"`
