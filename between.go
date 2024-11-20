@@ -1,5 +1,11 @@
 package govalidator
 
+import (
+	"fmt"
+	"strings"
+	"unicode/utf8"
+)
+
 const (
 	// Between represents rule name which will be used to find the default error message.
 	Between = "between"
@@ -33,6 +39,22 @@ func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
 //	}
 func (v Validator) BetweenFloat(f, min, max float64, field, msg string) Validator {
 	v.check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
+
+	return v
+}
+
+// BetweenString checks if the length of given string to have an integer value between the given min and max.
+//
+// Example:
+//
+//	v := validator.New()
+//	v.BetweenString("Obi-one", 3, 10, "name", "name must be between 3 and 10 characters.")
+//	if v.IsFailed() {
+//		 fmt.Printf("validation errors: %#v\n", v.Errors())
+//	}
+func (v Validator) BetweenString(s string, minLen, maxLen int, field, msg string) Validator {
+	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) >= minLen && utf8.RuneCountInString(strings.TrimSpace(s)) <= maxLen, field,
+		v.msg(Between, msg, fmt.Sprintf("%s length", field), minLen, maxLen))
 
 	return v
 }

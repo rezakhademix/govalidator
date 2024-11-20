@@ -35,6 +35,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | RequiredSlice    | `RequiredSlice` checks if a slice has any value or not.                                                             |
 | BetweenInt       | `BetweenInt` checks whether value falls within the specified range or not.                                          |
 | BetweenFloat     | `BetweenFloat` checks whether value falls within the specified range or not.                                        |
+| BetweenString    | `BetweenString` checks whether string length falls within the specified range or not.                               |
 | Date             | `Date` checks value to be a valid, non-relative date.                                                               |
 | Email            | `Email` checks value to match `EmailRegex` regular expression.                                                      |
 | Exists           | `Exists` checks given value exists in given table or not.                                                           |
