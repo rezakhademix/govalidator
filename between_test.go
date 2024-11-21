@@ -151,3 +151,96 @@ func Test_BetweenFloat(t *testing.T) {
 		}
 	}
 }
+
+func Test_BetweenString(t *testing.T) {
+	tests := []struct {
+		name        string
+		field       string
+		value       string
+		min         int
+		max         int
+		isPassed    bool
+		msg         string
+		expectedMsg string
+	}{
+		{
+			name:        "test string length of `Hi there!` is within [3, 35] range",
+			field:       "greeting",
+			value:       "Hi there!",
+			min:         3,
+			max:         35,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test string length of `hey` is within [3, 35] range",
+			field:       "greeting",
+			value:       "hey",
+			min:         3,
+			max:         35,
+			isPassed:    true,
+			msg:         "",
+			expectedMsg: "",
+		},
+		{
+			name:        "test string length of `hi` is not within [3, 35] range",
+			field:       "greeting",
+			value:       "hi",
+			min:         3,
+			max:         35,
+			isPassed:    false,
+			msg:         "",
+			expectedMsg: "greeting length should be greater than or equal 3 and less than or equal 35",
+		},
+		{
+			name:        "test string length of `hi` is not within [3, 35] range with custom msg",
+			field:       "greeting",
+			value:       "hi",
+			min:         3,
+			max:         35,
+			isPassed:    false,
+			msg:         "The length of greeting should be greater than or equal 3 and less than or equal 35",
+			expectedMsg: "The length of greeting should be greater than or equal 3 and less than or equal 35",
+		},
+		{
+			name:        "test string length of `Hi there lovely, how are you today sweetheart?` is not within [3, 35] range",
+			field:       "greeting",
+			value:       "Hi there lovely, how are you today sweetheart?",
+			min:         3,
+			max:         35,
+			isPassed:    false,
+			msg:         "",
+			expectedMsg: "greeting length should be greater than or equal 3 and less than or equal 35",
+		},
+		{
+			name:        "test string length of `Hi there lovely, how are you today sweetheart?` is not within [3, 35] range with custom msg",
+			field:       "greeting",
+			value:       "Hi there lovely, how are you today sweetheart?",
+			min:         3,
+			max:         35,
+			isPassed:    false,
+			msg:         "The length of greeting should be greater than or equal 3 and less than or equal 35",
+			expectedMsg: "The length of greeting should be greater than or equal 3 and less than or equal 35",
+		},
+	}
+
+	for _, test := range tests {
+		v := New()
+
+		v.BetweenString(test.value, test.min, test.max, test.field, test.msg)
+
+		assert.Equal(t, test.isPassed, v.IsPassed())
+
+		if !test.isPassed {
+			assert.Equalf(
+				t,
+				test.expectedMsg,
+				v.Errors()[test.field],
+				"test case %q failed, expected: %s, got: %s",
+				test.expectedMsg,
+				v.Errors()[test.field],
+			)
+		}
+	}
+}

@@ -16,7 +16,7 @@ func Test_RequiredInt(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			name:        "test integer value of `21` will pass the required int valiation",
+			name:        "test integer value of `21` will pass the required int validation",
 			field:       "age",
 			value:       21,
 			isPassed:    true,
@@ -24,7 +24,7 @@ func Test_RequiredInt(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test integer value of `0` won't pass the required int valiation",
+			name:        "test integer value of `0` won't pass the required int validation",
 			field:       "age",
 			value:       0,
 			isPassed:    false,
@@ -32,7 +32,7 @@ func Test_RequiredInt(t *testing.T) {
 			expectedMsg: "age is required",
 		},
 		{
-			name:        "test integer value of `0` won't pass the required int valiation",
+			name:        "test integer value of `0` won't pass the required int validation",
 			field:       "age",
 			value:       0,
 			isPassed:    false,
@@ -71,7 +71,7 @@ func Test_RequiredString(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			name:        "test string value of `lion` will pass the required string valiation",
+			name:        "test string value of `lion` will pass the required string validation",
 			field:       "animal",
 			value:       "lion",
 			isPassed:    true,
@@ -79,7 +79,7 @@ func Test_RequiredString(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test string value of `1160277052` will pass the required string valiation",
+			name:        "test string value of `1160277052` will pass the required string validation",
 			field:       "id",
 			value:       "1160277052",
 			isPassed:    true,
@@ -87,7 +87,7 @@ func Test_RequiredString(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test emtpy string value won't pass the required string valiation",
+			name:        "test emtpy string value won't pass the required string validation",
 			field:       "name",
 			value:       "",
 			isPassed:    false,
@@ -95,7 +95,7 @@ func Test_RequiredString(t *testing.T) {
 			expectedMsg: "name is required",
 		},
 		{
-			name:        "test emtpy space string value won't pass the required string valiation",
+			name:        "test emtpy space string value won't pass the required string validation",
 			field:       "last_name",
 			value:       " ",
 			isPassed:    false,
@@ -134,7 +134,7 @@ func Test_RequiredFloat(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			name:        "test float value of `12.23` will pass the required float valiation",
+			name:        "test float value of `12.23` will pass the required float validation",
 			field:       "average",
 			value:       12.23,
 			isPassed:    true,
@@ -142,7 +142,7 @@ func Test_RequiredFloat(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test float value of `0` won't pass the required float valiation",
+			name:        "test float value of `0` won't pass the required float validation",
 			field:       "score",
 			value:       0,
 			isPassed:    false,
@@ -150,7 +150,7 @@ func Test_RequiredFloat(t *testing.T) {
 			expectedMsg: "score is required",
 		},
 		{
-			name:        "test float value of `0` won't pass the required float valiation",
+			name:        "test float value of `0` won't pass the required float validation",
 			field:       "number",
 			value:       0,
 			isPassed:    false,
@@ -189,7 +189,7 @@ func Test_RequiredSlice(t *testing.T) {
 		expectedMsg string
 	}{
 		{
-			name:        "test slice of `[]{1, 2, 3}` will pass the required slice valiation",
+			name:        "test slice of `[]{1, 2, 3}` will pass the required slice validation",
 			field:       "scores",
 			value:       []any{1, 2, 3},
 			isPassed:    true,
@@ -197,7 +197,7 @@ func Test_RequiredSlice(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test slice of `{2.2, 12.6, 13.6}` will pass the required slice valiation",
+			name:        "test slice of `{2.2, 12.6, 13.6}` will pass the required slice validation",
 			field:       "averages",
 			value:       []any{2.2, 12.6, 13.6},
 			isPassed:    true,
@@ -205,7 +205,7 @@ func Test_RequiredSlice(t *testing.T) {
 			expectedMsg: "",
 		},
 		{
-			name:        "test emtpy slice won't pass the required slice valiation",
+			name:        "test emtpy slice won't pass the required slice validation",
 			field:       "scores",
 			value:       []any{},
 			isPassed:    false,
@@ -213,7 +213,7 @@ func Test_RequiredSlice(t *testing.T) {
 			expectedMsg: "scores is required",
 		},
 		{
-			name:        "test slice of names won't pass the required slice valiation",
+			name:        "test slice of names won't pass the required slice validation",
 			field:       "names",
 			value:       []any{},
 			isPassed:    false,
