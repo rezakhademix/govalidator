@@ -19,9 +19,7 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) RegexMatches(s string, pattern string, field, msg string) Validator {
-	r := regexp.MustCompile(pattern)
-
-	v.check(r.Match([]byte(s)), field, v.msg(Regex, msg))
+	v.check(regexp.MustCompile(pattern).MatchString(s), field, v.msg(Regex, msg))
 
 	return v
 }
