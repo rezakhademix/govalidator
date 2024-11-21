@@ -188,7 +188,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
 ---
 ### Benchmarks
-The following results compare the performance of three Go validation libraries (`govalidator`, `go-playground/validator` and `ozzo-validation`):
+The following results compare the performance of three Go validation libraries ([govalidator](https://github.com/rezakhademix/govalidator), [go-playground/validator](https://github.com/go-playground/validator) and [ozzo-validation](https://github.com/go-ozzo/ozzo-validation)):
 
 | **Library**       | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
 | ----------------- | -------------------------- | ----------------------------- | ------------------ |
