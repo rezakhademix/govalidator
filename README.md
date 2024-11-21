@@ -188,5 +188,13 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
 ---
 ### Benchmarks
----
-TBD
+The following results compare the performance of three Go validation libraries (`govalidator`, `go-playground/validator` and `ozzo-validation`):
+
+| **Library**       | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
+| ----------------- | -------------------------- | ----------------------------- | ------------------ |
+| `govalidator`     | 522.8 ns/op                | 121 B/op                      | 8 allocs/op        |
+| `go-playground`   | 669.6 ns/op                | 48 B/op                       | 1 alloc/op         |
+| `ozzo-validation` | 1740 ns/op                 | 1773 B/op                     | 37 allocs/op       |
+
+### Notes
+These benchmarks were conducted on an **Apple M3 Pro** CPU. Performance may vary depending on hardware and workload complexity.
