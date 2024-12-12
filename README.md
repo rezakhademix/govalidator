@@ -192,15 +192,15 @@ I wrote the sample struct below as a DTO to run benchmarks. You can view full be
 
 ```go
 type UserCreateReq struct {
-	FirstName     string `json:"first_name" validate:"required,min=1,max=100"`
-	LastName      string `json:"last_name" validate:"required,min=1,max=100"`
-	PhoneNumber   string `json:"phone_number" validate:"required,min=10,max=15"`
-	Email         string `json:"email,omitempty" validate:"required,email"`
-	FatherName    string `json:"father_name" validate:"required,min=1,max=100"`
-	CertificateID string `json:"certificate_id" validate:"required,min=1,max=50"`
-	BirthDate     string `json:"birth_date" validate:"required,datetime=2006-01-02"`
-	CompanyID     int    `json:"company_id" validate:"required"`
-	Gender        int8   `json:"gender" validate:"required,oneof=0 1"`
+	FirstName     string `json:"first_name"`
+	LastName      string `json:"last_name"`
+	PhoneNumber   string `json:"phone_number"`
+	Email         string `json:"email,omitempty"`
+	FatherName    string `json:"father_name"`
+	CertificateID string `json:"certificate_id"`
+	BirthDate     string `json:"birth_date"`
+	CompanyID     int    `json:"company_id"`
+	Gender        int8   `json:"gender"`
 }
 ```
 
