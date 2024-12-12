@@ -63,6 +63,7 @@ var (
 		Email:         EmailMsg,
 		UUID:          UUIDMsg,
 		Date:          DateMsg,
+		Time:          TimeMsg,
 		URL:           URLMsg,
 		Before:        BeforeMsg,
 		After:         AfterMsg,
