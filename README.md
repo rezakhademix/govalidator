@@ -188,13 +188,27 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 
 ---
 ### Benchmarks
-The following results compare the performance of three Go validation libraries ([govalidator](https://github.com/rezakhademix/govalidator), [go-playground/validator](https://github.com/go-playground/validator) and [ozzo-validation](https://github.com/go-ozzo/ozzo-validation)):
+I wrote the sample struct below as a DTO to run benchmarks. You can view full benchmark code on [golang/playground](https://go.dev/play/p/n-Wo5vOGvHB) however, as you probably already know, benchmarks cannot be executed directly on the playground `playground` and we have to use a code editor to run them.
+
+```go
+type UserCreateReq struct {
+	FirstName     string `json:"first_name" validate:"required,min=1,max=100"`
+	LastName      string `json:"last_name" validate:"required,min=1,max=100"`
+	PhoneNumber   string `json:"phone_number" validate:"required,min=10,max=15"`
+	Email         string `json:"email,omitempty" validate:"required,email"`
+	FatherName    string `json:"father_name" validate:"required,min=1,max=100"`
+	CertificateID string `json:"certificate_id" validate:"required,min=1,max=50"`
+	BirthDate     string `json:"birth_date" validate:"required,datetime=2006-01-02"`
+	CompanyID     int    `json:"company_id" validate:"required"`
+	Gender        int8   `json:"gender" validate:"required,oneof=0 1"`
+}
+```
 
 | **Library**       | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
 | ----------------- | -------------------------- | ----------------------------- | ------------------ |
-| `govalidator`     | 522.8 ns/op                | 121 B/op                      | 8 allocs/op        |
-| `go-playground`   | 669.6 ns/op                | 48 B/op                       | 1 alloc/op         |
-| `ozzo-validation` | 1740 ns/op                 | 1773 B/op                     | 37 allocs/op       |
+| `govalidator`     | 870.1 ns/op                | 394 B/op                      | 22 allocs/op       |
+| `go-playground`   | 17750.6 ns/op              | 20158 B/op                    | 284 alloc/op       |
+| `ozzo-validation` | 4597 ns/op                 | 7192 B/op                     | 126 allocs/op      |
 
 ### Notes
-These benchmarks were conducted on an **Apple M3 Pro** CPU. Performance may vary depending on hardware and workload complexity.
+These benchmarks were conducted on an **Apple M3 Pro** CPU.
