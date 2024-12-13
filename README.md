@@ -36,7 +36,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | BetweenInt       | `BetweenInt` checks whether value falls within the specified range or not.                                          |
 | BetweenFloat     | `BetweenFloat` checks whether value falls within the specified range or not.                                        |
 | BetweenString    | `BetweenString` checks whether string length falls within the specified range or not.                               |
-| Date             | `Date` checks value to be a valid, non-relative date.                                                               |
+| Date             | `Date` checks value to be a valid, non-relative date with given layout.                                             |
 | Email            | `Email` checks value to match `EmailRegex` regular expression.                                                      |
 | Exists           | `Exists` checks given value exists in given table or not.                                                           |
 | NotExists        | `NotExists` checks given value doesn't exist in given table, except.                                                |
@@ -63,6 +63,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | IsJSON           | `IsJSON` will check if given string is a valid JSON.                                                                |
 | NumericString    | `NumericString` will check if given value is a valid string of numbers.                                             |
 | MAC              | `MAC` will check if given value is a valid MAC address.                                                             |
+| Time             | `Time` will check if given value is a non-relative time with given layout.                                          |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
 
 ### Functions (other common validation rules)
@@ -212,3 +213,4 @@ type UserCreateReq struct {
 
 ### Notes
 These benchmarks were conducted on an **Apple M3 Pro** CPU.
+****
