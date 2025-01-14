@@ -205,12 +205,19 @@ type UserCreateReq struct {
 }
 ```
 
+ The result on Apple M3 Pro, 11 CPU Cores, 18GB RAM:
+
 | **Library**       | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
 | ----------------- | -------------------------- | ----------------------------- | ------------------ |
 | `govalidator`     | 870.1 ns/op                | 394 B/op                      | 22 allocs/op       |
 | `go-playground`   | 17750.6 ns/op              | 20158 B/op                    | 284 alloc/op       |
 | `ozzo-validation` | 4597 ns/op                 | 7192 B/op                     | 126 allocs/op      |
 
-### Notes
-These benchmarks were conducted on an **Apple M3 Pro** CPU.
-****
+
+And the result on my benchmark server **Ubuntu 24.0**, **AMD Ryzen 9 9950X 16-Core Processor, 32GB RAM** 
+
+|**Library**|**Operations/sec (ns/op)**|**Memory Allocations (B/op)**|**Allocations/op**|
+|:-|:-|:-|:-|
+|[govalidator](https://github.com/rezakhademix/govalidator)|1462 ns/op|390 B/op|23 allocs/op|
+|[go-playground](https://github.com/go-playground/validator)|32911 ns/op|20920 B/op|287 alloc/op|
+|[ozzo-validation](https://github.com/go-ozzo/ozzo-validation)|9703 ns/op|7106 B/op|127 allocs/opLibrary|
