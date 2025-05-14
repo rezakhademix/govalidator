@@ -81,7 +81,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
     ```go
         type User struct {
             Name string `json:"name"`
-            Age unit    `json:"age"`
+            Age uint    `json:"age"`
         }
 
         var user User
