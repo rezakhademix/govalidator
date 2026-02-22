@@ -65,7 +65,11 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | MAC              | `MAC` will check if given value is a valid MAC address.                                                             |
 | Time             | `Time` will check if given value is a non-relative time with given layout.                                          |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
-
+| FileRequired     | `FileRequired` checks if a `*multipart.FileHeader` is present and non-nil.                                      |
+| FileMimeType     | `FileMimeType` checks the actual file content type against a list of allowed MIME types using content sniffing. |
+| FileMaxSize      | `FileMaxSize` checks that the uploaded file size does not exceed the given maximum in bytes.                     |
+| FileMinSize      | `FileMinSize` checks that the uploaded file size meets the given minimum in bytes.                               |
+| FileExtension    | `FileExtension` checks the uploaded file's extension against a list of allowed extensions (case-insensitive).   |
 ### Functions (other common validation rules)
 ---
 | Method | Description                                                         |
@@ -167,26 +171,51 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
         // after filling CategoryCreateReq struct with binding or other methods
 
         v := govalidator.New().WithRepo(validatorRepo)  // be sure to import govalidator/v2
-		    
-		ok := v.
-			RequiredString(req.Name, "name", msgCategoryNameRequired).
-			MaxString(req.Name, nameMaxLength, "name", msgCategoryNameMaxLength).
-			MinString(req.Name, nameMinLength, "name", msgCategoryNameMinLength).
-			NotExists(req.Name, "categories", "name", "name", msgCategoryNameAlreadyExists). // ensure the value of req.Name does not exist in the "name" column of the "categories" table in the database
+		
+        ok := v.
+            RequiredString(req.Name, "name", msgCategoryNameRequired).
+            MaxString(req.Name, nameMaxLength, "name", msgCategoryNameMaxLength).
+            MinString(req.Name, nameMinLength, "name", msgCategoryNameMinLength).
+            NotExists(req.Name, "categories", "name", "name", msgCategoryNameAlreadyExists). // ensure the value of req.Name does not exist in the "name" column of the "categories" table in the database
 		  	MaxString(req.Description, descriptionMaxLength, "description", msgDescriptionMaxLength).
 		  	MinInt(req.Status, minStatus, "status", msgMinCategoryStatusIsWrong).
 		  	MaxInt(req.Status, maxStatus, "status", msgMaxCategoryStatusIsWrong).
     		IsJSON(req.Meta, "meta", msgMetaMustBeJSON).
 		  	When(req.ParentID != nil, func() {  
                 		v.Exists(*req.ParentID, "categories", "id", "parent_id", msgCategoryParentIDNotExist)   // checks if the value of req.ParentID exists in the "id" column of the "categories" table in the database
-			}).
-		  	IsPassed()
+			        }).
+            IsPassed()
 
         if !ok {
           return v.Errors()
         }
     ```
+5. File validation:
+    ```go
+        func (h *Handler) UploadAvatar(w http.ResponseWriter, r *http.Request) {
+            _, fh, err := r.FormFile("avatar")
+            if err != nil {
+                http.Error(w, "missing file", http.StatusBadRequest)
+                return
+            }
+    
+            v := govalidator.New()
+    
+            ok := v.
+                    FileRequired(fh, "avatar", "").
+                    FileMimeType(fh, []string{"image/jpeg", "image/png", "image/gif"}, "avatar", "").
+                    FileMinSize(fh, 1024, "avatar", "").        // at least 1 KB
+                    FileMaxSize(fh, 2*1024*1024, "avatar", ""). // at most 2 MB
+                    FileExtension(fh, []string{"jpg", "jpeg", "png", "gif"}, "avatar", "").
+                    IsPassed()
+    
+            if !ok {
+                return v.Errors()
+            }
+        }
+    ```
 
+    > **Note:** `FileMimeType` uses `net/http.DetectContentType` to sniff the actual file bytes rather than trusting the client-supplied `Content-Type` header or the filename. A file disguised with a fake extension (e.g. an `.exe` renamed to `.jpg`) will still be detected and rejected. For defense in depth, combine `FileMimeType` with `FileExtension`.
 ---
 ### Benchmarks
 I wrote the sample struct below as a DTO to run benchmarks. You can view full benchmark code on [golang/playground](https://go.dev/play/p/n-Wo5vOGvHB) however, as you probably already know, benchmarks cannot be executed directly on the playground `playground` and we have to use a code editor to run them.

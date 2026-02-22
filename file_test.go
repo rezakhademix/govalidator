@@ -423,6 +423,15 @@ func Test_FileMimeType(t *testing.T) {
 			message:      "",
 			expectedMsg:  "",
 		},
+		{
+			name:         "icon content passes when image/x-icon is allowed",
+			field:        "favicon",
+			fh:           newFileHeader("favicon.ico", iconBytes()),
+			allowedTypes: []string{"image/x-icon"},
+			isPassed:     true,
+			message:      "",
+			expectedMsg:  "",
+		},
 		// --- failing cases ---
 		{
 			name:         "plain text content fails when only image types are allowed",
@@ -513,6 +522,15 @@ func Test_FileMimeType(t *testing.T) {
 			isPassed:     false,
 			message:      "",
 			expectedMsg:  "photo must be one of the allowed types: image/jpeg, image/png",
+		},
+		{
+			name:         "icon content fails when only raster image types are allowed",
+			field:        "favicon",
+			fh:           newFileHeader("favicon.ico", iconBytes()),
+			allowedTypes: []string{"image/jpeg", "image/png", "image/gif"},
+			isPassed:     false,
+			message:      "",
+			expectedMsg:  "favicon must be one of the allowed types: image/jpeg, image/png, image/gif",
 		},
 		{
 			name:         "nil file header fails with default message",
