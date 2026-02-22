@@ -158,7 +158,7 @@ func nullBytes() []byte {
 	return bytes.Repeat([]byte{0x00}, 64)
 }
 
-func Test_FileRequired(t *testing.T) {
+func Test_RequiredFile(t *testing.T) {
 	tests := []struct {
 		name        string
 		field       string
@@ -268,7 +268,7 @@ func Test_FileRequired(t *testing.T) {
 	for _, test := range tests {
 		v := New()
 
-		v.FileRequired(test.fh, test.field, test.message)
+		v.RequiredFile(test.fh, test.field, test.message)
 
 		assert.Equal(t, test.isPassed, v.IsPassed())
 
@@ -1215,7 +1215,7 @@ func Test_FileRules_Chaining(t *testing.T) {
 	for _, test := range tests {
 		v := New()
 
-		v.FileRequired(test.fh, test.field, "").
+		v.RequiredFile(test.fh, test.field, "").
 			FileMinSize(test.fh, 1024, test.field, "").
 			FileMaxSize(test.fh, 2*1024*1024, test.field, "").
 			FileExtension(test.fh, []string{"jpg", "jpeg", "png"}, test.field, "").
@@ -1288,8 +1288,8 @@ func Test_FileRules_MultipleFields(t *testing.T) {
 	for _, test := range tests {
 		v := New()
 
-		v.FileRequired(test.avatarFh, "avatar", "")
-		v.FileRequired(test.documentFh, "document", "")
+		v.RequiredFile(test.avatarFh, "avatar", "")
+		v.RequiredFile(test.documentFh, "document", "")
 
 		errs := v.Errors()
 

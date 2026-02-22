@@ -71,7 +71,7 @@ var (
 		JSON:          JSONMsg,
 		NumericString: NumericStringMsg,
 		MAC:           MACMsg,
-		FileRequired:  FileRequiredMsg,
+		RequiredFile:  RequiredFileMsg,
 		FileMimeType:  FileMimeTypeMsg,
 		FileMaxSize:   FileMaxSizeMsg,
 		FileMinSize:   FileMinSizeMsg,

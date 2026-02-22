@@ -8,10 +8,10 @@ import (
 )
 
 const (
-	// FileRequired represents rule name which will be used to find the default error message.
-	FileRequired = "fileRequired"
-	// FileRequiredMsg is the default error message format for fields with FileRequired validation rule.
-	FileRequiredMsg = "%s is required"
+	// RequiredFile represents rule name which will be used to find the default error message.
+	RequiredFile = "requiredFile"
+	// RequiredFileMsg is the default error message format for fields with RequiredFile validation rule.
+	RequiredFileMsg = "%s is required"
 
 	// FileMimeType represents rule name which will be used to find the default error message.
 	FileMimeType = "fileMimeType"
@@ -34,19 +34,19 @@ const (
 	FileExtensionMsg = "%s must have one of the allowed extensions: %s"
 )
 
-// FileRequired checks if a multipart file header is present and non-nil.
+// RequiredFile checks if a multipart file header is present and non-nil.
 // A nil fh or a zero-size file means no file was uploaded for this field.
 //
 // Example:
 //
 //	_, fh, _ := r.FormFile("avatar")
 //	v := validator.New()
-//	v.FileRequired(fh, "avatar", "avatar is required.")
+//	v.RequiredFile(fh, "avatar", "avatar is required.")
 //	if v.IsFailed() {
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
-func (v Validator) FileRequired(fh *multipart.FileHeader, field, msg string) Validator {
-	v.check(fh != nil && fh.Size > 0, field, v.msg(FileRequired, msg, field))
+func (v Validator) RequiredFile(fh *multipart.FileHeader, field, msg string) Validator {
+	v.check(fh != nil && fh.Size > 0, field, v.msg(RequiredFile, msg, field))
 
 	return v
 }

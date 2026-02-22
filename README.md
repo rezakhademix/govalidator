@@ -65,7 +65,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | MAC              | `MAC` will check if given value is a valid MAC address.                                                             |
 | Time             | `Time` will check if given value is a non-relative time with given layout.                                          |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
-| FileRequired     | `FileRequired` checks if a `*multipart.FileHeader` is present and non-nil.                                      |
+| RequiredFile     | `RequiredFile` checks if a `*multipart.FileHeader` is present and non-nil.                                      |
 | FileMimeType     | `FileMimeType` checks the actual file content type against a list of allowed MIME types using content sniffing. |
 | FileMaxSize      | `FileMaxSize` checks that the uploaded file size does not exceed the given maximum in bytes.                     |
 | FileMinSize      | `FileMinSize` checks that the uploaded file size meets the given minimum in bytes.                               |
@@ -202,7 +202,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
             v := govalidator.New()
     
             ok := v.
-                    FileRequired(fh, "avatar", "").
+                    RequiredFile(fh, "avatar", "").
                     FileMimeType(fh, []string{"image/jpeg", "image/png", "image/gif"}, "avatar", "").
                     FileMinSize(fh, 1024, "avatar", "").        // at least 1 KB
                     FileMaxSize(fh, 2*1024*1024, "avatar", ""). // at most 2 MB
