@@ -13,6 +13,10 @@ else
 	@echo "no name passed to run matching tests!"
 endif
 
+benchmark: ## run library benchmarks and the cross-library comparison in benchmarks/
+	go test -bench=. -benchmem -count=5 -run=^$$ .
+	cd benchmarks && go test -bench=. -benchmem -count=5 -run=^$$ .
+
 test-cover: ## run `go test --cover` to show test coverage percent
 	go test --cover .
 

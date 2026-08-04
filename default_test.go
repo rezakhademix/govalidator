@@ -45,6 +45,16 @@ func Test_DefaultInt(t *testing.T) {
 	}
 }
 
+func Test_DefaultNilPointerIsNoOp(t *testing.T) {
+	v := New()
+
+	assert.NotPanics(t, func() {
+		v.DefaultInt(nil, 3)
+		v.DefaultFloat(nil, 5.0)
+		v.DefaultString(nil, "something")
+	})
+}
+
 func Test_DefaultFloat(t *testing.T) {
 	v := New()
 

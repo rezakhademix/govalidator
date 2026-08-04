@@ -20,8 +20,9 @@ const (
 //	}
 func (v Validator) IP4(s, field, msg string) Validator {
 	ip := net.ParseIP(s)
-
-	v.check(ip != nil && ip.To4() != nil, field, v.msg(IP4, msg, field))
+	if ip == nil || ip.To4() == nil {
+		v.addError(field, v.msg(IP4, msg, field))
+	}
 
 	return v
 }

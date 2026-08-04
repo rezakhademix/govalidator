@@ -18,7 +18,9 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) NotExists(value any, table, column, field, msg string) Validator {
-	v.check(!v.repo.Exists(value, table, column), field, v.msg(NotExists, msg, field))
+	if v.repo.Exists(value, table, column) {
+		v.addError(field, v.msg(NotExists, msg, field))
+	}
 
 	return v
 }

@@ -29,11 +29,13 @@ var EmailRegex = regexp.MustCompile(`^([a-z0-9!#$%&'*+/=?^_` + "`" + `{|}~-]+(?:
 //	}
 func (v Validator) Email(s, field, msg string) Validator {
 	if len(s) < minEmailValidLen || len(s) > maxEmailValidLen || !strings.Contains(s, "@") {
-		v.check(false, field, v.msg(Email, msg, field))
+		v.addError(field, v.msg(Email, msg, field))
 		return v
 	}
 
-	v.check(EmailRegex.MatchString(s), field, v.msg(Email, msg, field))
+	if !EmailRegex.MatchString(s) {
+		v.addError(field, v.msg(Email, msg, field))
+	}
 
 	return v
 }

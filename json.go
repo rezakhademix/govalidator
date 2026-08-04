@@ -19,7 +19,9 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) IsJSON(j, field, msg string) Validator {
-	v.check(json.Valid([]byte(j)), field, v.msg(JSON, msg, field))
+	if !json.Valid([]byte(j)) {
+		v.addError(field, v.msg(JSON, msg, field))
+	}
 
 	return v
 }

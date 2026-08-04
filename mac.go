@@ -22,7 +22,9 @@ var MACRegex = regexp.MustCompile(`^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})`)
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MAC(s, field, msg string) Validator {
-	v.check(MACRegex.MatchString(s), field, v.msg(Email, msg, field))
+	if !MACRegex.MatchString(s) {
+		v.addError(field, v.msg(MAC, msg, field))
+	}
 
 	return v
 }

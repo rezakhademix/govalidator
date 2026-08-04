@@ -1,6 +1,7 @@
 package govalidator
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -81,4 +82,25 @@ func Test_RegexMatches(t *testing.T) {
 			)
 		}
 	}
+}
+
+// regexCacheLen reports how many compiled patterns are currently cached.
+func regexCacheLen() int {
+	regexCacheMu.RLock()
+	defer regexCacheMu.RUnlock()
+
+	return len(regexCache)
+}
+
+func Test_RegexMatches_CacheIsBounded(t *testing.T) {
+	v := New()
+	for i := 0; i < 300; i++ {
+		v.RegexMatches("value", fmt.Sprintf("^pattern-%d$", i), "field", "")
+	}
+
+	assert.LessOrEqual(t, regexCacheLen(), maxRegexCacheSize, "regex cache must not grow unbounded")
+
+	v2 := New()
+	v2.RegexMatches("abc123", "[a-z]+[0-9]+", "input", "")
+	assert.True(t, v2.IsPassed())
 }
