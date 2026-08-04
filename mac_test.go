@@ -48,6 +48,14 @@ func Test_MAC(t *testing.T) {
 			expectedMsg: "mac is not valid",
 		},
 		{
+			name:        "test a mac address with trailing characters will fail validation",
+			field:       "mac",
+			value:       "00:B0:D0:63:C2:26:FF",
+			isPassed:    false,
+			message:     "",
+			expectedMsg: "mac is not valid",
+		},
+		{
 			name:        "test an empty string value will fail mac validation",
 			field:       "mac",
 			value:       "",
