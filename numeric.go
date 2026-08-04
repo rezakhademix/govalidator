@@ -25,8 +25,9 @@ const (
 //	}
 func (v Validator) NumericString(s, field, msg string) Validator {
 	_, err := strconv.ParseInt(s, base, bitSize)
-
-	v.check(err == nil, field, v.msg(NumericString, msg, field))
+	if err != nil {
+		v.addError(field, v.msg(NumericString, msg, field))
+	}
 
 	return v
 }

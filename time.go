@@ -23,7 +23,7 @@ const (
 func (v Validator) Time(layout, d, field, msg string) Validator {
 	_, err := time.Parse(layout, d)
 	if err != nil {
-		v.check(false, field, v.msg(Time, msg, field))
+		v.addError(field, v.msg(Time, msg, field))
 	}
 
 	return v

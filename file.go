@@ -46,7 +46,9 @@ const (
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) RequiredFile(fh *multipart.FileHeader, field, msg string) Validator {
-	v.check(fh != nil && fh.Size > 0, field, v.msg(RequiredFile, msg, field))
+	if fh == nil || fh.Size <= 0 {
+		v.addError(field, v.msg(RequiredFile, msg, field))
+	}
 
 	return v
 }
@@ -65,7 +67,9 @@ func (v Validator) RequiredFile(fh *multipart.FileHeader, field, msg string) Val
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) FileMimeType(fh *multipart.FileHeader, allowedTypes []string, field, msg string) Validator {
-	v.check(isMimeTypeAllowed(fh, allowedTypes), field, v.msg(FileMimeType, msg, field, strings.Join(allowedTypes, ", ")))
+	if !isMimeTypeAllowed(fh, allowedTypes) {
+		v.addError(field, v.msg(FileMimeType, msg, field, strings.Join(allowedTypes, ", ")))
+	}
 
 	return v
 }
@@ -80,7 +84,9 @@ func (v Validator) FileMimeType(fh *multipart.FileHeader, allowedTypes []string,
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) FileMaxSize(fh *multipart.FileHeader, maxBytes int64, field, msg string) Validator {
-	v.check(fh != nil && fh.Size <= maxBytes, field, v.msg(FileMaxSize, msg, field, maxBytes))
+	if fh == nil || fh.Size > maxBytes {
+		v.addError(field, v.msg(FileMaxSize, msg, field, maxBytes))
+	}
 
 	return v
 }
@@ -95,7 +101,9 @@ func (v Validator) FileMaxSize(fh *multipart.FileHeader, maxBytes int64, field, 
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) FileMinSize(fh *multipart.FileHeader, minBytes int64, field, msg string) Validator {
-	v.check(fh != nil && fh.Size >= minBytes, field, v.msg(FileMinSize, msg, field, minBytes))
+	if fh == nil || fh.Size < minBytes {
+		v.addError(field, v.msg(FileMinSize, msg, field, minBytes))
+	}
 
 	return v
 }
@@ -115,7 +123,9 @@ func (v Validator) FileMinSize(fh *multipart.FileHeader, minBytes int64, field, 
 //	    fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) FileExtension(fh *multipart.FileHeader, allowedExts []string, field, msg string) Validator {
-	v.check(isExtensionAllowed(fh, allowedExts), field, v.msg(FileExtension, msg, field, strings.Join(allowedExts, ", ")))
+	if !isExtensionAllowed(fh, allowedExts) {
+		v.addError(field, v.msg(FileExtension, msg, field, strings.Join(allowedExts, ", ")))
+	}
 
 	return v
 }

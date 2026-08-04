@@ -1,7 +1,6 @@
 package govalidator
 
 import (
-	"strconv"
 	"strings"
 	"unicode/utf8"
 )
@@ -27,7 +26,9 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenString(s string, size int, field, msg string) Validator {
-	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) == size, field, v.msg(Len, msg, field, size))
+	if utf8.RuneCountInString(strings.TrimSpace(s)) != size {
+		v.addError(field, v.msg(Len, msg, field, size))
+	}
 
 	return v
 }
@@ -42,7 +43,9 @@ func (v Validator) LenString(s string, size int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenInt(i, size int, field, msg string) Validator {
-	v.check(len(strconv.Itoa(i)) == size, field, v.msg(Len, msg, field, size))
+	if intLen(i) != size {
+		v.addError(field, v.msg(Len, msg, field, size))
+	}
 
 	return v
 }
@@ -57,7 +60,24 @@ func (v Validator) LenInt(i, size int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) LenSlice(s []any, size int, field, msg string) Validator {
-	v.check(len(s) == size, field, v.msg(LenList, msg, field, size))
+	if len(s) != size {
+		v.addError(field, v.msg(LenList, msg, field, size))
+	}
 
 	return v
+}
+
+// intLen mirrors len(strconv.Itoa(i)) — digit count plus one for a minus
+// sign — without allocating a string.
+func intLen(i int) int {
+	n := 1
+	if i < 0 {
+		n++
+	}
+
+	for i /= 10; i != 0; i /= 10 {
+		n++
+	}
+
+	return n
 }

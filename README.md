@@ -57,19 +57,19 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 | Before           | `Before` will check if given time instant t is before given time instant u.                                         |
 | After            | `After` will check if given time instant t is after given time instant u.                                           |
 | IP4              | `IP4` will check whether given string is a valid IPV4.                                                              |
-| DefaultInt       | `DefaultInt` sets a default value for any pointer to an int that is passed.                                         |
-| DefaultFloat     | `DefaultFloat` sets a default value for any pointer to a float that is passed.                                      |
-| DefaultString    | `DefaultString` sets a default value for any pointer to a string that is passed.                                    |
+| DefaultInt       | `DefaultInt` sets a default value on a non-nil int pointer whose value is zero (nil pointers are a no-op).          |
+| DefaultFloat     | `DefaultFloat` sets a default value on a non-nil float pointer whose value is zero (nil pointers are a no-op).      |
+| DefaultString    | `DefaultString` sets a default value on a non-nil string pointer whose value is empty (nil pointers are a no-op).   |
 | IsJSON           | `IsJSON` will check if given string is a valid JSON.                                                                |
 | NumericString    | `NumericString` will check if given value is a valid string of numbers.                                             |
 | MAC              | `MAC` will check if given value is a valid MAC address.                                                             |
 | Time             | `Time` will check if given value is a non-relative time with given layout.                                          |
 | CustomRule       | `CustomRule` is a dynamic method to define any custom validation rule.                                              |
-| RequiredFile     | `RequiredFile` checks if a `*multipart.FileHeader` is present and non-nil.                                      |
-| FileMimeType     | `FileMimeType` checks the actual file content type against a list of allowed MIME types using content sniffing. |
-| FileMaxSize      | `FileMaxSize` checks that the uploaded file size does not exceed the given maximum in bytes.                     |
-| FileMinSize      | `FileMinSize` checks that the uploaded file size meets the given minimum in bytes.                               |
-| FileExtension    | `FileExtension` checks the uploaded file's extension against a list of allowed extensions (case-insensitive).   |
+| RequiredFile     | `RequiredFile` checks if a `*multipart.FileHeader` is present and non-nil.                                          |
+| FileMimeType     | `FileMimeType` checks the actual file content type against a list of allowed MIME types using content sniffing.     |
+| FileMaxSize      | `FileMaxSize` checks that the uploaded file size does not exceed the given maximum in bytes.                        |
+| FileMinSize      | `FileMinSize` checks that the uploaded file size meets the given minimum in bytes.                                  |
+| FileExtension    | `FileExtension` checks the uploaded file's extension against a list of allowed extensions (case-insensitive).       |
 ### Functions (other common validation rules)
 ---
 | Method | Description                                                         |
@@ -218,7 +218,13 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
     > **Note:** `FileMimeType` uses `net/http.DetectContentType` to sniff the actual file bytes rather than trusting the client-supplied `Content-Type` header or the filename. A file disguised with a fake extension (e.g. an `.exe` renamed to `.jpg`) will still be detected and rejected. For defense in depth, combine `FileMimeType` with `FileExtension`.
 ---
 ### Benchmarks
-I wrote the sample struct below as a DTO to run benchmarks. You can view full benchmark code on [golang/playground](https://go.dev/play/p/n-Wo5vOGvHB) however, as you probably already know, benchmarks cannot be executed directly on the playground `playground` and we have to use a code editor to run them.
+The full benchmark code lives in the [`benchmarks/`](benchmarks/) directory (a separate Go module, so the comparison libraries are not added to govalidator's own dependencies). It validates the `UserCreateReq` DTO below with equivalent rules in each library and measures the passing path. The `go-playground` validator instance is created once and reused, as its documentation recommends, so its struct-metadata cache is not unfairly discarded.
+
+Run the benchmarks yourself with:
+
+```
+make benchmark
+```
 
 ```go
 type UserCreateReq struct {
@@ -236,17 +242,9 @@ type UserCreateReq struct {
 
  The result on Apple M3 Pro, 11 CPU Cores, 18GB RAM:
 
-| **Library**       | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
-| ----------------- | -------------------------- | ----------------------------- | ------------------ |
-| `govalidator`     | 870.1 ns/op                | 394 B/op                      | 22 allocs/op       |
-| `go-playground`   | 1033 ns/op                 | 228 B/op                      | 6 alloc/op         |
-| `ozzo-validation` | 4597 ns/op                 | 7192 B/op                     | 126 allocs/op      |
+| **Library**                                                   | **Operations/sec (ns/op)** | **Memory Allocations (B/op)** | **Allocations/op** |
+| ------------------------------------------------------------- | -------------------------- | ----------------------------- | ------------------ |
+| [govalidator](https://github.com/rezakhademix/govalidator)    | 500 ns/op                  | 0 B/op                        | 0 allocs/op        |
+| [go-playground](https://github.com/go-playground/validator)   | 878 ns/op                  | 0 B/op                        | 0 allocs/op        |
+| [ozzo-validation](https://github.com/go-ozzo/ozzo-validation) | 3477 ns/op                 | 6394 B/op                     | 78 allocs/op       |
 
-
-And the result on my benchmark server **Ubuntu 24.0**, **AMD Ryzen 9 9950X 16-Core Processor, 32GB RAM** 
-
-|**Library**|**Operations/sec (ns/op)**|**Memory Allocations (B/op)**|**Allocations/op**|
-|:-|:-|:-|:-|
-|[govalidator](https://github.com/rezakhademix/govalidator)|1462 ns/op|390 B/op|23 allocs/op|
-|[go-playground](https://github.com/go-playground/validator)|2057 ns/op|233 B/op|11 alloc/op|
-|[ozzo-validation](https://github.com/go-ozzo/ozzo-validation)|9703 ns/op|7106 B/op|127 allocs/opLibrary|

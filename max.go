@@ -26,7 +26,9 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MaxInt(i, max int, field, msg string) Validator {
-	v.check(i <= max, field, v.msg(Max, msg, field, max))
+	if i > max {
+		v.addError(field, v.msg(Max, msg, field, max))
+	}
 
 	return v
 }
@@ -41,7 +43,9 @@ func (v Validator) MaxInt(i, max int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MaxFloat(f, max float64, field, msg string) Validator {
-	v.check(f <= max, field, v.msg(Max, msg, field, max))
+	if f > max {
+		v.addError(field, v.msg(Max, msg, field, max))
+	}
 
 	return v
 }
@@ -56,7 +60,9 @@ func (v Validator) MaxFloat(f, max float64, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) MaxString(s string, maxLen int, field, msg string) Validator {
-	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) <= maxLen, field, v.msg(MaxString, msg, field, maxLen))
+	if utf8.RuneCountInString(strings.TrimSpace(s)) > maxLen {
+		v.addError(field, v.msg(MaxString, msg, field, maxLen))
+	}
 
 	return v
 }

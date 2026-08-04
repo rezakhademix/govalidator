@@ -23,7 +23,9 @@ const (
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
-	v.check(i >= min && i <= max, field, v.msg(Between, msg, field, min, max))
+	if i < min || i > max {
+		v.addError(field, v.msg(Between, msg, field, min, max))
+	}
 
 	return v
 }
@@ -38,7 +40,9 @@ func (v Validator) BetweenInt(i, min, max int, field, msg string) Validator {
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) BetweenFloat(f, min, max float64, field, msg string) Validator {
-	v.check(f >= min && f <= max, field, v.msg(Between, msg, field, min, max))
+	if f < min || f > max {
+		v.addError(field, v.msg(Between, msg, field, min, max))
+	}
 
 	return v
 }
@@ -53,8 +57,10 @@ func (v Validator) BetweenFloat(f, min, max float64, field, msg string) Validato
 //		 fmt.Printf("validation errors: %#v\n", v.Errors())
 //	}
 func (v Validator) BetweenString(s string, minLen, maxLen int, field, msg string) Validator {
-	v.check(utf8.RuneCountInString(strings.TrimSpace(s)) >= minLen && utf8.RuneCountInString(strings.TrimSpace(s)) <= maxLen, field,
-		v.msg(Between, msg, fmt.Sprintf("%s length", field), minLen, maxLen))
+	length := utf8.RuneCountInString(strings.TrimSpace(s))
+	if length < minLen || length > maxLen {
+		v.addError(field, v.msg(Between, msg, fmt.Sprintf("%s length", field), minLen, maxLen))
+	}
 
 	return v
 }

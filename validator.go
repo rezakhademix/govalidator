@@ -39,9 +39,17 @@ type (
 		ExistsExceptSelf(value any, table, column string, selfID int) bool
 	}
 
+	// errBag holds the validation errors behind a pointer so that Validator
+	// methods can keep value receivers while sharing one error store across
+	// the whole method chain. The map itself is created lazily on the first
+	// failure, keeping a fully passing validation free of map allocations.
+	errBag struct {
+		errs map[string]string
+	}
+
 	// Validator represents the validator structure
 	Validator struct {
-		errs map[string]string
+		bag  *errBag
 		repo Repository
 	}
 )
@@ -85,7 +93,7 @@ var (
 // New will return a new validator
 func New() Validator {
 	return Validator{
-		errs: make(map[string]string),
+		bag: &errBag{},
 	}
 }
 
@@ -102,7 +110,7 @@ func (v Validator) WithRepo(r Repository) Validator {
 
 // IsPassed checks if the validator result has passed or not.
 func (v Validator) IsPassed() bool {
-	return len(v.Errors()) == 0
+	return v.bag == nil || len(v.bag.errs) == 0
 }
 
 // IsFailed  checks if the validator result has failed or not.
@@ -110,22 +118,25 @@ func (v Validator) IsFailed() bool {
 	return !v.IsPassed()
 }
 
-// Errors returns a map of all validator rule errors.
+// Errors returns a map of all validator rule errors. When no rule has failed
+// it returns a fresh empty map instead of materializing the shared store, so
+// Errors stays a pure read and is safe to call from concurrent readers.
 func (v Validator) Errors() map[string]string {
-	return v.errs
-}
-
-// check is the internal method easily validate each validator method result
-func (v Validator) check(ok bool, field, msg string) {
-	if !ok {
-		v.addError(field, msg)
+	if v.bag == nil || v.bag.errs == nil {
+		return map[string]string{}
 	}
+
+	return v.bag.errs
 }
 
 // addError fills the errors map and prevents duplicate fields from being added to validator errors.
 func (v Validator) addError(field, msg string) {
-	if _, exists := v.Errors()[field]; !exists {
-		v.Errors()[field] = msg
+	if v.bag.errs == nil {
+		v.bag.errs = make(map[string]string)
+	}
+
+	if _, exists := v.bag.errs[field]; !exists {
+		v.bag.errs[field] = msg
 	}
 }
 
