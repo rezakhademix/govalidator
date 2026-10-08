@@ -1,6 +1,6 @@
 module github.com/rezakhademix/govalidator/v2/benchmarks
 
-go 1.22.0
+go 1.26.0
 
 require (
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
@@ -15,10 +15,10 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
-	golang.org/x/crypto v0.19.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sys v0.17.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/crypto v0.57.0 // indirect
+	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/sys v0.48.0 // indirect
+	golang.org/x/text v0.42.0 // indirect
 )
 
 replace github.com/rezakhademix/govalidator/v2 => ../
