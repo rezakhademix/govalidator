@@ -220,7 +220,7 @@ Each validation rule in GoValidator has it's own default message, e.g: `required
 ### Benchmarks
 The full benchmark code lives in the [`benchmarks/`](benchmarks/) directory (a separate Go module, so the comparison libraries are not added to govalidator's own dependencies). It validates the `UserCreateReq` DTO below with equivalent rules in each library and measures the passing path. The `go-playground` validator instance is created once and reused, as its documentation recommends, so its struct-metadata cache is not unfairly discarded.
 
-Run the benchmarks yourself with:
+Run the benchmarks yourself with Go 1.26 or newer (required by the patched comparison dependencies). The govalidator library itself still supports Go 1.22:
 
 ```
 make benchmark
